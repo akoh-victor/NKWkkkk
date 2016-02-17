@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+    {% block menu %}
+        <li> <a href={{ path('home')}}><i class="fa fa-home"></i> <strong>Home</strong> </a></li>
+        <li><a href={{ path('service')}}><strong>Services</strong></a></li>
+        <li class="active"> <a href={{ path('news')}}><i class="fa fa-about"></i><strong>News</strong></a> </li>
+        <li><a href={{ path('about')}}>  <i class="fa fa-about"></i><strong> About</strong></a> </li>
+        <li> <a href={{ path('faq')}}> <i class="fa fa-about"></i><strong> FAQ</strong> </a>  </li>
+        <li> <a href={{ path('contact')}}> <i class="fa fa-contact"></i><strong> Contact Us</strong></a> </li>
+    {% endblock %}
+
+{% block slider %}
+{% endblock %}
+
+{% block badge %}
+    <div><img src="{{ asset('images/banners/news2.jpg') }}" width="100%" height="200px"/> </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-lg-8">
+            <div class="row panel panel-default">
+              <div class="col-md-6">
+            <div class="">
+
+                {% if rescentNews is defined %}
+                    <h2>Recent News</h2>
+                    <table class="table  table-hover">
+                        <tbody>
+                        {% for news in rescentNews %}
+                            <tr> <td> <a href="/news/{{ news.id }}"> <p><strong>{{ news.title |capitalize }}</strong></p> </a>
+                                    <br /><p>{{ news.publishDate |date }} |</p></td> </tr>
+                        {%  endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+
+            </div>
+              </div>
+                <div class="col-md-6">
+                <div class="">
+                    {% if mostRead is defined %}
+                        <h2>Most Read News</h2>
+                        <table class="table  table-hover">
+                            <tbody>
+                            {% for news in mostRead %}
+                                <tr> <td> <a href="/news/{{ news.id }}"> <p><strong>{{ news.title |capitalize }}</strong></p> </a>
+                                        <br /><p>{{ news.publishDate |date }} |</p></td> </tr>
+                            {%  endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+               </div>
+                </div>
+            </div>
+
+        </div>
+        <div class=" col-sm-3 col-md-4">
+            <div class="ads">
+                <div class="thumbnail"> <img
+                                src="{{ asset('images/ads/abroadads.jpg') }}" height="300px" alt="IJMB ADMISSIONS" />
+                </div>
+                <hr />
+                <div class="thumbnail"> <a href="http://www.ijmbadmissions.com" target="_blank"><img
+                                src="{{ asset('images/ads/alevel.jpg') }}" height="300px" alt="IJMB ADMISSIONS" /></a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

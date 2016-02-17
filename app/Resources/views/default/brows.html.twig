@@ -1,0 +1,193 @@
+{% extends 'base.html.twig' %}
+
+{% block content  %}
+<div class="container">
+    <ol class="breadcrumb">
+        <li><strong>You are here :</strong></li>
+        <li><a href="{{ path('home') }}">Home</a></li>
+        <li class="active"><a href="/department/{{ selectedProduct.group.category.department.id }}">{{ selectedProduct.group.category.department.name |title }}</a></li>
+        <li class="active"><a href="/department/category/{{ selectedProduct.group.category.id }}">{{ selectedProduct.group.category.name |title }}</a></li>
+        <li class="active"><a href="/department/category/{{ selectedProduct.group.id }}">{{ selectedProduct.group.name |title }}</a></li>
+        <li class="active"><strong>{{ selectedProduct.name |title }}</strong></li>
+    </ol>
+
+    <div class="col-sm-6  panel panel-danger" >
+        <div id="selectedProduct" class="owl-carousel">
+
+            {% if selectedProduct %}
+
+                        <img src="{{ vich_uploader_asset(selectedProduct, 'frontImageFile') }}" alt="" style="width:auto;  ">
+
+                        <img src="{{ vich_uploader_asset(selectedProduct, 'rearImageFile') }}" alt="" style="width:auto; ">
+
+            {%  endif %}
+
+        </div>
+
+    </div>
+    
+    <div class="col-sm-6" >
+        <div class="panel panel-red">
+              <h4 class=" panel panel-heading">{{ selectedProduct.name | title }}</h4>
+               <br />
+               <div style = "background-color:rgba(230,225,225,0.2)" >
+                   <hr />
+                       <table class="table">
+                               <tr>
+                                  <td style="width:70px">
+                                     <strong>Quantity  </strong>
+                                   </td>
+                                  <td>
+                                  </td>
+                               </tr>
+
+                               <tr>
+                                   <td style="width:70px">
+                                    <input type="submit" class=" btn  btn-outline btn-primary" name="cart" value="Add to Cart"/>
+                                   </td>
+                                  <td style="width:70px">
+                                   <a href="department.php?sel_dept_id='.$sel_dept_id.'"class="btn  btn-outline btn-primary ">
+                                       Continue Shopping</a>
+                                   </td>
+                               </tr>
+                               <tr>
+                                   <td style="width:70px">
+
+                                   </td>
+                                   <td style="width:70px">
+
+                                   </td>
+                               </tr>
+                       </table>
+                   <strong><a href="">Add to wish list</a></strong>
+                   <strong><a></a></strong>
+
+                   <hr />
+                   <h6><strong>Sold by :Nimikiddies.com</strong></h6>
+               </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+
+             <!-- /.panel-heading -->
+             <div class="panel-body">
+                <!-- Nav tabs -->
+                	<ul class="nav nav-tabs">
+                        <li><a href="#about" data-toggle="tab">About</a></li>
+
+                        <li class="active"><a href="#description" data-toggle="tab">Details</a>
+                        </li>
+                    </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane fade" id="about">
+                        <h4>about Tab</h4>
+                        <p>
+                            {{  selectedProduct.about | nl2br }}
+                        </p>
+                        </div>
+                    <div class="tab-pane fade in active" id="description">
+                        <h4>details Tab</h4>
+                        <p>
+                           This product belongs to :  {{ selectedProduct.group.category.department.name |title }}<br />
+                            Category : {{ selectedProduct.group.category.name |title }}<br />
+                            Group:{{ selectedProduct.group.name |title }}<br />
+                            Gender:<br />
+                            Measurement:<br />
+                            Availability:  {{  selectedProduct.stock  }}<br />
+                        </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+<div class="row">
+    <div class="col-sm-12" >
+        {% if similarProducts is defined %}
+            <div class="row">
+                <div class="col-sm-12" >
+                    <h3>Similar Products</h3>
+                    <div id="similarProducts" class="owl-carousel">
+
+                        {% for product in similarProducts %}
+                            <div class="thumbnail carouselProducts">
+                                <a href="/brows/{{ product.id }}">
+                                    <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="width:auto;  height:200px">
+
+                                <div class="carouselProductsCaption">
+                                    <div class="prodPrice">{{ product.price }}</div>
+                                    <div class="prodTitle">{{ product.name }}</div>
+                                </div>
+                                </a>
+                            </div>
+
+                        {%  endfor %}
+
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12" >
+        {% if customersChoiceProducts is defined %}
+            <div class="row">
+                <div class="col-sm-12" >
+                    <h3>Customers Choice</h3>
+                    <div id="customersChoiceProducts" class="owl-carousel">
+
+                        {% for product in customersChoiceProducts %}
+                            <div class="thumbnail carouselProducts">
+                                <a href="/brows/{{ product.id }}">
+                                    <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="width:auto;  height:200px">
+
+                                <div class="carouselProductsCaption">
+                                    <div class="prodPrice">{{ product.price }}</div>
+                                    <div class="prodTitle">{{ product.name }}</div>
+                                </div>
+                                </a>
+                            </div>
+                        {%  endfor %}
+
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+    <div class="row">
+        <div class="col-sm-12" >
+            {% if sponsoredProducts is defined %}
+                <div class="row">
+                    <div class="col-sm-12" >
+                        <h3>Sponsored Products</h3>
+                        <div id="sponsoredProducts" class="owl-carousel">
+
+                            {% for product in sponsoredProducts %}
+                                <div class="thumbnail carouselProducts">
+                                    <a href="/brows/{{ product.id }}">
+                                        <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="width:auto;  height:200px">
+
+                                    <div class="carouselProductsCaption">
+                                        <div class="prodPrice">{{ product.price }}</div>
+                                        <div class="prodTitle">{{ product.name }}</div>
+                                    </div>
+                                    </a>
+                                </div>
+                            {%  endfor %}
+
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

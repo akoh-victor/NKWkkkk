@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+ <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="Solveit solutions">
+        <title>{% block title %}Nimi Kiddies World{% endblock %}</title>
+        {% block stylesheets %}
+
+          {% stylesheets filter="scssphp" output="css/app.css"
+              "%kernel.root_dir%/Resources/assets/scss/bootstrap.scss"
+              "%kernel.root_dir%/Resources/assets/scss/font-awesome.scss"
+              "%kernel.root_dir%/Resources/assets/css/carousel.css"
+              "%kernel.root_dir%/Resources/assets/css/camera.css"
+              "%kernel.root_dir%/Resources/assets/css/owl.theme.css"
+              "%kernel.root_dir%/Resources/assets/css/chuma.css"
+              "%kernel.root_dir%/Resources/assets/css/font.css"
+          %}
+              <link rel="stylesheet" href="{{ asset_url }}" />
+          {% endstylesheets %}
+
+
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('logo.jpg') }}" />
+
+     {% block javascript %}
+
+
+{% endblock %}
+ </head>
+ <body style="background-color: #eee8d5">
+  <header>
+  </header>
+      <div class="container-fluid">
+          <div class="row">
+              {% block slider %}
+              {% endblock %}
+          </div>
+          <div class="row">
+              {% block slogan %}
+              {% endblock %}
+          </div>
+
+          <div class="row">
+              {% block content %}
+              {% endblock %}
+          </div>
+
+
+      </div>
+  <footer>
+ {#footer content goes here #}
+  </footer>
+        {% block javascripts %}
+
+        {% javascripts filter="?jsqueeze" output="js/app.js"
+            "%kernel.root_dir%/Resources/assets/js/jquery-2.1.4.js"
+            "%kernel.root_dir%/Resources/assets/js/bootstrap-3.3.4.js"
+            "%kernel.root_dir%/Resources/assets/js/carousel.js"
+             "%kernel.root_dir%/Resources/assets/js/camera.min.js" %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+
+            <script>
+                $(document).ready(function() {
+                    $("#newProducts").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 3000,
+                        items : 6,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+                    $("#sponsoredProducts").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 3000,
+                        items : 6,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+                    $("#featuredProducts").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 3000,
+                        items : 6,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+                    $("#similarProducts").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 3000,
+                        items : 6,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+                    $("#customersChoiceProducts").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 3000,
+                        items : 6,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+                    $("#selectedProducts").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 3000,
+                        items : 1,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+                });
+
+            </script>
+            <script>
+
+                jQuery(function(){
+
+                    jQuery('#selectedProduct').camera({
+                        height: '450px',
+                        width: '450px',
+                        loader: 'none',
+                        time: 99000000,
+                        playPause: false,
+                        pagination: false,
+                        thumbnails: false,
+                        transPeriod	: 10,
+                        portrait:true,
+
+                    });
+
+                });
+
+            </script>
+        {% endblock %}
+ </body>
+</html>
