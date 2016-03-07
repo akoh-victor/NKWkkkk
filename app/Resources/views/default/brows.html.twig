@@ -44,6 +44,7 @@
                                <tr>
                                    <td style="width:70px">
                                     <input type="submit" class=" btn  btn-outline btn-primary" name="cart" value="Add to Cart"/>
+                                       <a href="{{ path('sylius_cart_item_add', {'productId': selectedProduct.id}) }}">Add product to cart</a>
                                    </td>
                                   <td style="width:70px">
                                    <a href="department.php?sel_dept_id='.$sel_dept_id.'"class="btn  btn-outline btn-primary ">

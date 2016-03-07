@@ -7,3 +7,9 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+     app.cart_item_resolver:
+         class:        AppBundle\Service\Cart\ItemResolver
+         arguments:    ['@doctrine.orm.entity_manager']
+        # company.cart_item_resolver:
+          #   class: myproject\Cart\ItemResolver
+           #  arguments: ['@doctrine.orm.entity_manager']

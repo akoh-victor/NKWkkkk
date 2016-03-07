@@ -1,5 +1,5 @@
 {
-    "name": "my pc/nkw",
+    "name": "nimi kidies world",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -25,8 +25,8 @@
         "leafo/scssphp": "^0.6.3",
         "patchwork/jsqueeze": "~1.0",
         "knplabs/knp-paginator-bundle": "^2.5",
-        "sylius/cart-bundle": "^0.16.0",
-        "hwi/oauth-bundle": "^0.4.0"
+        "hwi/oauth-bundle": "0.4.0",
+        "sylius/cart-bundle": "v0.15.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
