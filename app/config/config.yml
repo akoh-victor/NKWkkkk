@@ -37,6 +37,22 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
 
+    #enable email confirmation
+    registration:
+            confirmation:
+                enabled: true
+                from_email:
+                    address:        registration@nimikiddies.com
+                    sender_name:    Customer Welfare Unit
+    resetting:
+            email:
+                from_email:
+                    address:        resetting@nimikiddies.com
+                    sender_name:    Customer Welfare Unit
+    #email- conf
+    from_email:
+            address:        noreply@nimikiddies.com
+            sender_name:    Customer Welfare Unit
 
 
 # Twig Configuration
@@ -122,46 +138,29 @@ knp_paginator:
 
 
 sylius_cart:
-    resolver: app.cart_item_resolver # The id of our newly created service.
-    classes: ~ # This key can be empty but it must be present in the configuration.
-
-sylius_order:
-    driver: doctrine/orm # Configure the doctrine orm driver used in documentation.
-    classes:
-         order:
-            #model: AppBundle\Entity\Cart  #If you have created a custom Cart entity.
-         order_item:
-            model: AppBundle\Entity\CartItem # If you have created a custom CartItem entity.
-
-sylius_money: ~
-
-
-#sylius_cart:
     # The driver used for persistence layer.
-  #  driver: ~
+    driver: doctrine/orm
     # Service id of cart item resolver.
-  #  resolver: ~
+    resolver: app.cart_item_resolver
     # Cart provider service id.
-   # provider: sylius.cart_provider.default
+    provider: sylius.cart_provider.default
     # The id of cart storage for default provider.
    # storage: sylius.cart_storage.session
-  #  resources:
-       # cart:
-       #     classes:
-       #         controller: Sylius\Bundle\CartBundle\Controller\CartController
-       #         form:       Sylius\Bundle\CartBundle\Form\Type\CartType
-       #     validation_groups:
-      #          default: [ sylius ]
-    #    cart_item:
-      #      classes:
-          #      controller: Sylius\Bundle\CartBundle\Controller\CartItemController
-      #          form:       Sylius\Bundle\CartBundle\Form\Type\CartItemType
-     #       validation_groups:
-  #              default: [ sylius ]
-
-
-
-
+    resources:
+        cart:
+            classes:
+                controller: Sylius\Bundle\CartBundle\Controller\CartController
+                form:
+                    default: Sylius\Bundle\CartBundle\Form\Type\CartType
+            validation_groups:
+                default: [ sylius ]
+        cart_item:
+            classes:
+                controller: Sylius\Bundle\CartBundle\Controller\CartItemController
+                form:
+                    default: Sylius\Bundle\CartBundle\Form\Type\CartItemType
+            validation_groups:
+                default: [ sylius ]
 
 
 

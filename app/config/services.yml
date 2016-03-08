@@ -10,6 +10,6 @@ services:
      app.cart_item_resolver:
          class:        AppBundle\Service\Cart\ItemResolver
          arguments:    ['@doctrine.orm.entity_manager']
-        # company.cart_item_resolver:
-          #   class: myproject\Cart\ItemResolver
-           #  arguments: ['@doctrine.orm.entity_manager']
+         company.cart_item_resolver:
+             class: myproject\Cart\ItemResolver
+             arguments: ['@doctrine.orm.entity_manager']
