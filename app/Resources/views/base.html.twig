@@ -34,7 +34,10 @@
  <body style="background-color: #eee8d5">
   <header>
   </header>
+
       <div class="container">
+         {% block body %}
+
           <div class="row">
               {% block slider %}
               {% endblock %}
@@ -43,14 +46,14 @@
               {% block slogan %}
               {% endblock %}
           </div>
-
           <div class="row">
               {% block content %}
               {% endblock %}
           </div>
 
-
+      {% endblock %}
       </div>
+
   <footer>
  {#footer content goes here #}
   </footer>

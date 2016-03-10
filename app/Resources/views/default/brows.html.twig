@@ -34,18 +34,17 @@
                    <hr />
                        <table class="table">
                                <tr>
-                                  <td style="width:70px">
-                                     <strong>Quantity  </strong>
-                                   </td>
-                                  <td>
-                                  </td>
+
                                </tr>
 
                                <tr>
-                                   <td style="width:70px">
+                                  {# <td style="width:70px">
                                     <input type="submit" class=" btn  btn-outline btn-primary" name="cart" value="Add to Cart"/>
+
+                                       <a href="{{ path('sylius_cart_summary') }}">view cart</a>
+
                                        <a href="{{ path('sylius_cart_item_add', {'productId': selectedProduct.id}) }}">Add product to cart</a>
-                                   </td>
+                                   </td>#}
                                   <td style="width:70px">
                                    <a href="department.php?sel_dept_id='.$sel_dept_id.'"class="btn  btn-outline btn-primary ">
                                        Continue Shopping</a>

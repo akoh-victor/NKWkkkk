@@ -13,10 +13,16 @@ class AppKernel extends Kernel
             new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
             new Sylius\Bundle\MoneyBundle\SyliusMoneyBundle(),
             new Sylius\Bundle\OrderBundle\SyliusOrderBundle(),
-            new Sylius\Bundle\CartBundle\SyliusCartBundle(),
 
+            //new Sylius\Bundle\CartBundle\SyliusCartBundle(),
+           // new Sylius\Bundle\ProductBundle\SyliusProductBundle(),
+           // new Sylius\Bundle\ArchetypeBundle\SyliusArchetypeBundle(),
+            //new Sylius\Bundle\AttributeBundle\SyliusAttributeBundle(),
+           // new Sylius\Bundle\AssociationBundle\SyliusAssociationBundle(),
+           // new Sylius\Bundle\VariationBundle\SyliusVariationBundle(),
 
             new FOS\RestBundle\FOSRestBundle(),
+            new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
 
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),

@@ -1,5 +1,4 @@
 <?php
-// src/AppBundle/Entity/User.php
 
 namespace AppBundle\Entity;
 
@@ -9,8 +8,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  * @ORM\Table(name="app_users")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"customer" = "AppBundle\Entity\Customer", "employee" = "AppBundle\Entity\Employee"})
  */
-class User extends BaseUser
+abstract class User extends BaseUser
 {
     /**
      * @ORM\Id
@@ -19,9 +21,4 @@ class User extends BaseUser
      */
     protected $id;
 
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-    }
 }

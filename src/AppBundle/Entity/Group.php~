@@ -49,9 +49,17 @@ class Group
      */
     protected $category;
 
+    /**
+     *  @ORM\OneToMany(targetEntity="Product", mappedBy="group")
+     */
+    protected $product;
+    public function  construct()
+    {
+        $this->product = new ArrayCollection();
+    }
 
 
-
+//am including the group relationship with brand in case there is something wrong thanks
     /**
      * @ORM\ManyToMany(targetEntity="Brand", inversedBy="group")
      * @ORM\JoinTable(name="brand_groups")
@@ -63,14 +71,6 @@ class Group
         $this->brand = new ArrayCollection();
     }
 
-    /**
-     *  @ORM\OneToMany(targetEntity="Product", mappedBy="group")
-     */
-    protected $product;
-    public function  construct()
-    {
-        $this->product = new ArrayCollection();
-    }
 
 
     /**
@@ -263,4 +263,13 @@ class Group
     {
         return $this->product;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->brand = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->product = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 }

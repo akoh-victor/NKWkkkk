@@ -36,6 +36,8 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: AppBundle\Entity\User
+    service:
+        user_manager: pugx_user_manager
 
     #enable email confirmation
     registration:
@@ -53,6 +55,36 @@ fos_user:
     from_email:
             address:        noreply@nimikiddies.com
             sender_name:    Customer Welfare Unit
+
+#pugx for multi user interface
+pugx_multi_user:
+  users:
+    employee:
+        entity:
+          class: AppBundle\Entity\Employee
+        registration:
+          form:
+            type: AppBundle\Form\Type\EmployeeType
+            name: fos_user_registration_form
+            validation_groups:  [Registration, Default]
+         # template: AppBundle:Registration:employee.form.html.twig
+        profile:
+          form:
+            type: AppBundle\Form\Type\ProfileEmployeeType
+            name: fos_user_profile_form
+            validation_groups:  [Profile, Default]
+    customer:
+        entity:
+          class: AppBundle\Entity\Customer
+        registration:
+          form:
+            type: AppBundle\Form\Type\CustomerType
+          #template: AppBundle:Registration:customer.form.html.twig
+        profile:
+          form:
+            type: AppBundle\Form\Type\ProfileCustomerType
+
+
 
 
 # Twig Configuration
@@ -135,32 +167,6 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
-
-
-sylius_cart:
-    # The driver used for persistence layer.
-    driver: doctrine/orm
-    # Service id of cart item resolver.
-    resolver: app.cart_item_resolver
-    # Cart provider service id.
-    provider: sylius.cart_provider.default
-    # The id of cart storage for default provider.
-   # storage: sylius.cart_storage.session
-    resources:
-        cart:
-            classes:
-                controller: Sylius\Bundle\CartBundle\Controller\CartController
-                form:
-                    default: Sylius\Bundle\CartBundle\Form\Type\CartType
-            validation_groups:
-                default: [ sylius ]
-        cart_item:
-            classes:
-                controller: Sylius\Bundle\CartBundle\Controller\CartItemController
-                form:
-                    default: Sylius\Bundle\CartBundle\Form\Type\CartItemType
-            validation_groups:
-                default: [ sylius ]
 
 
 

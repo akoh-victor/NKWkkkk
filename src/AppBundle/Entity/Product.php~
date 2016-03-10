@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 use AppBundle\Entity\ProductRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -126,12 +127,7 @@ class Product
      * @ORM\Column(type="text")
      */
     protected $about;
-    /**
-     * @ORM\Column(type="datetime")
-     *
-     * @var \DateTime
-     */
-    private $updatedAt;
+
 
 //relationships
     /**
