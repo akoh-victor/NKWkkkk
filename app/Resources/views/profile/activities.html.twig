@@ -1,0 +1,273 @@
+{% extends 'base.html.twig' %}
+
+
+{% block content %}
+
+
+    <ol class="breadcrumb">
+									<li><strong>You are here :</strong></li>
+									<li><a href="index.php">Home</a></li>
+									<li><a href="profile.php">Profile</a></li>
+									<li class="active"><strong>Activity</strong></li>
+									</ol>
+									$p ='<div class="container-fluid">
+									<div class="row">
+									<div class="col-sm-12" >
+									//header nav
+									<ul class="nav nav-tabs" role="tablist">
+									<li  class="active" ><a href="profile.php?activity=1" ><h3>Activities</h3></a></li>
+									//<li><a href="profile.php?messages=1" ><h3><span class="badge pull-right">1</span> Messages</h3></a></li>
+									<li><a href="profile.php?account=1&personal_info=1"><h3>Account</h3></a></li>
+									</ul>
+									</div>//end of col-sm-12
+									</div>//end of row
+									// end header nav
+
+									<div class="row">
+									<div class="col-sm-3">
+									<div class="navbar-default sidebar" role="navigation">
+													<div class="sidebar-nav navbar-collapse">
+									<ul class="nav" id="side-menu">
+
+
+									   <li><a href="profile.php?activity=1&request=1" >Requests</a></li>
+									   <li><a href="profile.php?activity=1&deleted=1" >Deleted</a></li>
+									   <li> <a href="#"><i class="fa fa-sitemap fa-fw"></i>Lists<span class="fa arrow"></span></a>
+											 <ul class="nav nav-second-level">
+
+											 <li><a href="profile.php?activity=1&wish_list=1" >Wish List</a>
+											 <li><a href="profile.php?activity=1&watch_list=1" >Watch List</a>
+									</ul></li>
+
+
+
+									</ul>
+									</div></div></div>
+
+								// ac2ivi27 bod7
+									<div class="col-sm-9 " >
+
+							<div class="panel panel-danger">
+
+						if (isset($_GET['activity'])&&isset($_GET['wish_list'])) {
+							<div class="panel panel-heading"><h3>Wish List</h3> </div>
+							$Products = new product();
+							$wishes = $c->get_wish_for_cus($user_id);
+							if (!empty($wishes)){
+													<form action="" method="post">
+														<div class="row">
+														<div class = "col-sm-2">
+														</div>
+														<div class = "col-sm-5">
+														 <h3><small>Select multiple choice then take an action</small></h3>
+														</div>
+														<div class = "col-sm-4">
+
+															   <div>
+																		<input type="submit" name="moreWishDelete" value="Delete"/>
+																		<input type="submit" name="moreWishCart" value="Add To Cart "/>
+																		<input type="submit" name="moreWishRequest" value="Request"/>
+															  </div>
+														</div>
+														</div>
+
+												foreach ($wishes as $wishe){
+
+															$id = $wishe->product_id;
+															//
+
+
+															$products = $Products->get_product_details($id);
+														foreach($products as $product){
+																	$name = $product->product;  $product_code = $product->product_code; $price = $product->unit_price; $des = $product->description; $dept_id= $product->department_id; $sub_dept_id=$product->sub_department_id;
+																	<hr />
+															<div class="row">
+															<div class = "col-md-2 col-md-offset-1 thumbnail">
+
+															//<img> holder
+															<input type="checkbox" name="select_product" value="'.$id.'"/>
+															<a href="brows.php?produc_id='.$id.'">
+															<img src=imgconver/ge.php?p_id='.$id.'  alt="" style="width:auto;  height:180px"></a>
+															</div>
+															<div class = "col-md-3 col-md-offset-1">
+															//price
+
+															&nbsp
+															<h4>'.$name.'</h4>
+															//&nbsp
+
+															<h6>'.$product_code.'</h6>
+															&nbsp
+															<h5 class="wishing">'.$id.' Wishing</h5>
+															</div>
+															<div class = "col-md-2">
+															//about
+
+															<h5 class="prodPrice">? '.$price.'.00</h5>
+
+															<a data-toggle="collapse"
+																	   data-target="#'.$id.'" aria-expanded="false" aria-controls="collapseExample">See Description</a>
+															</div>
+															<div class = "col-md-3">
+															&nbsp
+															$p.= '<input type="text"  name="uniq_pro_id" hidden="hidden" value="'.$id.'"/>
+															<input type="submit" class=" btn  btn-outline btn-primary" name="request" value="Request Now"/>
+															$p.= '<input type="submit"  name="cart" value="Add to Cart"/>
+															$p.= '<input type="submit"  name="delete" value="Remove"/>
+															</div>
+															</div>//END OF row
+
+															$p.='<div class="collapse well" id="'.$id.'">
+
+															$p.='<div class="row">
+															$p.='<pre>'.$des.'</pre>
+															$p.='</div>
+															$p.='</div>
+															}//end of for each $products
+
+														}//end of for each wishes
+
+														</form>
+														</div>
+														</div>
+
+														</div>
+
+														</div>//end of panel
+
+													}else {
+														//no item wished for by this user
+														<div class="row">
+														<div class = "col-sm-8 col-md-offset-2">
+														<pre>Sorry no item on your wish list </pre>
+
+
+														</div></div>//end of row/col-sm-8 col-md-offset-2
+													}
+						}//(isset($_GET['activity'])&&isset($_GET['wish_lis
+
+					if (isset($_GET['activity'])&&isset($_GET['watch_list'])) {
+						<div class="panel panel-heading"><h3>Watch List</h3> </div>
+						$Products = new product();
+						$watches = $c->get_watch_for_cus($user_id);
+						if (!empty($watches)){
+							<form action="" method="post">
+							<div class="row">
+							<div class = "col-sm-2 col-md-offset-1">
+							//<div>DELE2E</div>
+							<div><input type="submit" name="delete" value="DELETE"/></div>
+							</div>
+							<div class = "col-sm-5">
+							<p></p>
+							</div>
+							<div class = "col-sm-2">
+							//about
+							<p></p>
+							</div>
+							</div>
+							foreach ($watches as $watch){
+
+								$id=$watch->product_id;
+								//
+
+
+								$products = $Products->get_product_details($id);
+								foreach($products as $product){
+									$name = $product->product;
+									$product_code = $product->product_code;
+									$price = $product->unit_price;
+									$des = $product->description;
+									$dept_id= $product->department_id;
+									$sub_dept_id=$product->sub_department_id;
+									<hr />
+									<div class="row">
+									<div class = "col-md-2 col-md-offset-1 thumbnail">
+									//<img> holder
+									<input type="checkbox" name="select_product" value="'.$id.'"/>
+									<a href="brows.php?produc_id='.$id.'">
+									<img src=imgconver/ge.php?p_id='.$id.'
+																	alt="" style="width:auto;  height:180px"></a>
+									</div>
+									<div class = "col-md-3 col-md-offset-1">
+									//price
+
+									&nbsp
+									<h4>'.$name.'</h4>
+									//&nbsp
+
+									<h6>'.$product_code.'</h6>
+									&nbsp
+									<h5 class="wishing">'.$id.' Wishing</h5>
+									</div>
+									<div class = "col-md-2">
+									//about
+
+									<h5 class="prodPrice">? '.$price.'.00</h5>
+
+									<a data-toggle="collapse"
+															data-target="#'.$id.'" aria-expanded="false" aria-controls="collapseExample">See Description</a>
+									</div>
+									<div class = "col-md-3">
+									&nbsp
+									$p.='<input type="text"  name="uniq_pro_id" hidden="hidden" value="'.$id.'"/>
+									<input type="submit" class=" btn  btn-outline btn-primary" name="request" value="Request Now"/>
+									$p.='<input type="submit"  name="cart" value="Add to Cart"/>
+									</div>
+									</div>//END OF row
+
+									$p.='<div class="collapse well" id="'.$id.'">
+
+									$p.='<div>
+
+									$p.='<pre>'.$des.'</pre>
+
+									$p.='</div>
+
+									$p.='</div>
+								}//end of for each $products
+							}//end of for each wishes
+
+
+
+							</form>
+
+
+
+
+
+							</div>
+							</div>
+
+
+							</div>
+
+							</div>//end of panel
+
+
+
+						}else {
+							//no item wished for by this user
+							<div class="row">
+							<div class = "col-sm-8 col-md-offset-2">
+							<pre>Sorry no item on your watch list </pre>
+
+
+							</div></div>//end of row/col-sm-8 col-md-offset-2
+						}
+					}//(isset($_GET['activity'])&&isset($_GET['wish_lis
+
+
+
+					</div>
+
+							  </div>//end of col-sm-9
+
+									</div>//end of row
+
+									</div>//con2ainer
+
+									echo $p;
+
+
+
+{% endblock %}

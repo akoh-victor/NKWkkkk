@@ -7,7 +7,8 @@
         <li><a href="{{ path('home') }}">Home</a></li>
         <li class="active"><a href="/department/{{ selectedProduct.group.category.department.id }}">{{ selectedProduct.group.category.department.name |title }}</a></li>
         <li class="active"><a href="/department/category/{{ selectedProduct.group.category.id }}">{{ selectedProduct.group.category.name |title }}</a></li>
-        <li class="active"><a href="/department/category/{{ selectedProduct.group.id }}">{{ selectedProduct.group.name |title }}</a></li>
+        <li class="active"><a href="/department/category/group/{{ selectedProduct.group.id }}">{{ selectedProduct.group
+                .name |title }}</a></li>
         <li class="active"><strong>{{ selectedProduct.name |title }}</strong></li>
     </ol>
 

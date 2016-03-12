@@ -24,6 +24,7 @@ class Customer extends User
     {
         parent::__construct();
         // your own logic
+        $this->roles = array('ROLE_CUSTOMER');
     }
 
     /**
@@ -35,37 +36,34 @@ class Customer extends User
      */
     protected $lastName;
     /**
-     * @ORM\Column(type="integer", length=100)
+     * @ORM\Column(type="integer", length=100,nullable=false)
      */
     protected $phone;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",nullable=true)
      */
     protected $billingAddress;
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",nullable=true)
      */
     protected $contactAddress;
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    protected $country;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100,nullable=true)
      */
     protected $state;
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100,nullable=true)
      */
     protected $city;
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\Column(type="smallint",nullable=true)
+     *
      */
     protected $receivePromo;
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",nullable=true, options={"unsigned":true, "default":0})
      */
     protected $login_count;
 
@@ -121,7 +119,7 @@ class Customer extends User
      * @param \phone $phone
      * @return Customer
      */
-    public function setPhone(\phone $phone)
+    public function setPhone($phone)
     {
         $this->phone = $phone;
 
