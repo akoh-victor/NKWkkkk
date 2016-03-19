@@ -2,58 +2,25 @@
 
 
 {% block content %}
-    <ol class="breadcrumb">
-        <li><strong>You are here :</strong></li>
-        <li><a href="{{ path('home') }}">Home</a></li>
-        <li class="active"><a href="/department/"></a></li>
-        <li class="active"><a href="/department/category/"></a></li>
-        <li class="active"><a href="/department/category/"><strong></strong></a></li>
-    </ol>
 
+{#
     <div class="row">
         <div class="col-sm-12" >
-            //header nav
+
             <ul class="nav nav-tabs" role="tablist">
                 <li ><a href="profile.php?activity=1" ><h3>Activities</h3></a></li>
                 <li class="active"><a href="profile.php?account=1&personal_info=1"><h3>Account</h3></a></li>
                 </ul>
-            </div>//end of col-sm-12
-        </div>//end of row
-    // end header nav
+            </div>
+        </div>
+
 
     <div class="row">
         <div class="col-sm-3">
-            //<div class="navbar-default sidebar" role="navigation">
-                //<div class="sidebar-nav navbar-collapse">
+            <div class="navbar-default sidebar" role="navigation">
 
-                    <ul class="nav nav-pills nav-stacked" id="side-menu">
-
-                        <div class="list-group-info">
-
-                            <h4 class="list-group-item">My Account Information</h4></div>
-                        //accoun2 naviga2ion**********************************************
-                        <li 
-                        if (isset($_GET['account'])&&isset($_GET['personal_info'])) {
-                        class="active"
-                        }
-                        ><a href="profile.php?account=1&personal_info=1"><i class="fa  fa-info-circle fa-fw "></i> Personal Information</a>
-                        <li 
-                        if (isset($_GET['account'])&&isset($_GET['address'])) {
-                        class="active"
-                        }
-                        ><a href="profile.php?account=1&address=1"><i class="fa  fa-info-circle fa-fw"></i> Addresses</a>
-                        <li 
-                        if (isset($_GET['account'])&&isset($_GET['comm_p'])) {
-                        class="active"
-
-                        }
-                        ><a href="profile.php?account=1&comm_p=1"><i class="fa  fa-info-circle fa-fw"></i> Communication Preference</a>
-                        <li 
-                        if (isset($_GET['account'])&&isset($_GET['feedback'])) {
-                        class="active"
-                        }
-                        ><a href="profile.php?account=1&feedback=1"><i class="fa  fa-info-circle fa-fw"></i> Feed Back</a>
-                        //accoun2 naviga2ion*************************************************************
+                   <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav nav-pills nav-stacked" id="side-menu">
                         </ul>
                     </div>
 
@@ -61,6 +28,7 @@
 
                     <div class="panel panel-info">
                         $pinfo = $c->get_personal_info($user_id);
+
                         if (isset($_GET['account'])&&isset($_GET['personal_info'])) {
 
                         if (!empty($pinfo)){
@@ -69,8 +37,8 @@
 
                         <table class="table">
                         </table>
-                        }//end of
-                        }//end of isse2
+                        }
+                        }
 
                         if (isset($_GET['account'])&&isset($_GET['address'])) {
 
@@ -90,78 +58,100 @@
                                     <strong>Primary Shipping address -</strong> This is where you would like to receive the item u purchased.
                                 </div></div>
                             </form>
-                        }// end of isset($_GET['account'])&&isset($_GET['address'])
+                        }
 
                         if (isset($_GET['account'])&&isset($_GET['comm_p'])) {
                         <div class="panel panel-heading">
                             Communication Preference</div>
-                        }// end of isset($_GET['account'])&&isset($_GET['comm_p'])
+                        }
 
                         if (isset($_GET['account'])&&isset($_GET['feedback'])) {
                         <div class="panel panel-heading">
                             Feed back</div>
-                        }// end of isset($_GET['account'])&&isset($_GET['feedback'])
-                        </div></div>//end of col-sm-9
+                        }
+                        </div></div>
 
-                </div>//end of row
+                </div>
 
-            </div>//con2ainer
+            </div>
+   </div>
+
+
+#}
 
 
 
-        }
-        else {
-        //defaul2 value af2er signing in before de user makes a choice
-        echo '<ol class="breadcrumb">
-            echo '<li><strong>You are here :</strong></li>
-            echo '<li><a href="index.php">Home</a></li>
-            echo '<li><a href="profile.php">Profile</a></li>
-            echo '<li class="active">Default:<strong>Acount</strong></li>
-            echo '</ol>
-       <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12" >
-                    //header nav
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li><a href="profile.php?activity=1" ><h3>Activity</h3></a></li>
-                        <li><a href="profile.php?messages=1" ><h3><span class="badge pull-right">1</span> Messages</h3></a></li>
-                        <li   class="active" ><a href="profile.php?account=1"><h3>Account</h3></a></li>
-                        </ul>
-                    </div>//end of col-sm-12
-                </div>//end of row
-            // end header nav
 
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="navbar-default sidebar" role="navigation">
-                        <div class="sidebar-nav navbar-collapse">
-                            
-                            <ul class="nav" id="side-menu">
+    <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="/profile/account">Account</a></li>
+            <li role="presentation"><a href="/profile/activities">Activities</a></li>
+        </ul>
 
-                                <li> <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-second-level">
-                                        <li>
-                                            <a href="#">Second Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Second Level Item</a>
-                                        </li>
+        <!-- Tab panes -->
+        <div >
+            <div class="col-sm-9">
+                <div class=""
+                {#if (!empty($pinfo)){#}
+                <div class="panel panel-heading">
+                    Personal Information</div>
 
-                                    </ul></li>
-                                <li><a href="profile.php?activity=wish list" >Wish List></a>
-                                    <li><a href="profile.php?activity=wish list" >Wish List></a>
-                                    </ul>
-                            </div></div></div>
+                <table class="table">
+                </table>
 
-                <div class="col-sm-9 panel panel-default" >
-                    we gudder
-                    </div>//end of col-sm-9
+                if (isset($_GET['account'])&&isset($_GET['address'])) {
 
-                </div>//end of row
 
-            </div>//con2ainer
+                <div class="panel panel-heading">Addresses</div>
+                <form action="profile/update_profile.php" method="post">
+                    <table class="table table-default">
 
-        echo $p;
+                    </table>
 
+                    <div class="panel-body">
+
+                        <div style ="background-color:lemonchiffon ;border:1px dashed orange ;padding:3px">
+                            <h3 class="pull-right"><small>About addresses</h3></small>
+
+                            <strong>Registration address -</strong> This is your main contact address, so its important to keep it up to date and accurate.<br />
+                            <strong>Primary Shipping address -</strong> This is where you would like to receive the item u purchased.
+                        </div></div>
+                </form>
+                }
+
+                if (isset($_GET['account'])&&isset($_GET['comm_p'])) {
+                <div class="panel panel-heading">
+                    Communication Preference</div>
+                }
+
+                if (isset($_GET['account'])&&isset($_GET['feedback'])) {
+                <div class="panel panel-heading">
+                    Feed back</div>
+                }
+
+            </div>
+            <div class="clear-fix"></div>
+            <div class="col-sm-3" >
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav nav-pills nav-stacked" id="side-menu">
+                        <div class="list-group-info">
+                            <h4 class="list-group-item">My Account Information</h4></div>
+                        <li class ="active"><a href="profile.php?account=1&personal_info=1"><i class="fa  fa-info-circle
+                        fa-fw "></i> Personal Information</a>
+                        <li><a href="profile.php?account=1&address=1"><i class="fa  fa-info-circle fa-fw"></i> Addresses</a>
+                        <li><a href="profile.php?account=1&comm_p=1"><i class="fa  fa-info-circle fa-fw"></i> Communication
+                                Preference</a>
+                        <li><a href="profile.php?account=1&feedback=1"><i class="fa  fa-info-circle fa-fw"></i> Feed Back</a>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
 
 {% endblock %}
+
