@@ -10,11 +10,16 @@ class AppKernel extends Kernel
         $bundles = array(
 
 
+
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+
             new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
             new Sylius\Bundle\MoneyBundle\SyliusMoneyBundle(),
+            new Sylius\Bundle\SequenceBundle\SyliusSequenceBundle(),
             new Sylius\Bundle\OrderBundle\SyliusOrderBundle(),
 
-            //new Sylius\Bundle\CartBundle\SyliusCartBundle(),
+            new Sylius\Bundle\CartBundle\SyliusCartBundle(),
            // new Sylius\Bundle\ProductBundle\SyliusProductBundle(),
            // new Sylius\Bundle\ArchetypeBundle\SyliusArchetypeBundle(),
             //new Sylius\Bundle\AttributeBundle\SyliusAttributeBundle(),
@@ -22,6 +27,7 @@ class AppKernel extends Kernel
            // new Sylius\Bundle\VariationBundle\SyliusVariationBundle(),
 
             new FOS\RestBundle\FOSRestBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
             new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
 
@@ -36,7 +42,6 @@ class AppKernel extends Kernel
 
             new AppBundle\AppBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         );
 

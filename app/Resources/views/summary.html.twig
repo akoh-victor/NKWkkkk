@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+
+ {% block content %}
+
+{% set cart = sylius_cart_get() %}
+
+Current cart totals: {{ cart.total }} for {{ cart.totalItems }} items!
+
+ {% endblock %}

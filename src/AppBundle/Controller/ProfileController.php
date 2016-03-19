@@ -3,7 +3,7 @@
 namespace AppBundle\Controller;
 
 
-/*use AppBundle\Form\Type\PromoType;*/
+
 use FOS\UserBundle\Controller\ProfileController as baseProfiler;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
@@ -30,7 +30,8 @@ class ProfileController extends baseProfiler
         }
 
         return $this->render('default/profile.html.twig', array(
-            'user' => $user
+            'user' => $user,
+
         ));
     }
 }

@@ -84,8 +84,35 @@ pugx_multi_user:
           form:
             type: AppBundle\Form\Type\ProfileCustomerType
 
+sylius_cart:
+    resolver: app.cart_item_resolver
+    resources:
+        cart:
+            classes:
+                model: %sylius.model.order.class%
+                #form:
+                   # default: Sylius\Bundle\CartBundle\Form\Type\CartItemType
+        cart_item:
+            classes:
+                model: %sylius.model.order_item.class%
+                #form:
+                    #default: AppBundle\Form\Type\OrderItemType
 
 
+#used to generate order unique code
+sylius_sequence:
+    generators:
+        AppBundle\Entity\Order: sylius.sequence.sequential_number_generator
+
+
+sylius_order:
+    resources:
+        order:
+            classes:
+                model: AppBundle\Entity\Order
+        order_item:
+            classes:
+                model: AppBundle\Entity\OrderItem
 
 # Twig Configuration
 twig:

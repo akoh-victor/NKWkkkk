@@ -1,14 +1,67 @@
 <?php
 
 namespace AppBundle\Controller;
+
+use Sylius\Bundle\CartBundle\Form\Type\CartItemType;
+
+use AppBundle\Entity\OrderItem;
 use AppBundle\Entity\Department;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Console\Question\Question;
 use Symfony\Component\HttpFoundation\Request;
 
-class DefaultController extends Controller
+
+use Symfony\Component\HttpFoundation\Response;
+
+class DefaultController extends  Controller
 {
+
+
+    /**
+     * @Route("/brows/{id}", name="brows product")
+     */
+    public function browsProductAction(Request $request,$id)
+    {
+
+        $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
+        $product = $Product->find($id);
+
+        $customersChoiceProducts = $Product->mostView('20');
+        $sponsoredProducts = $Product->findAllRecentProducts('15');
+        $similarProducts = $Product->findAllRecentProducts('15');
+
+        //$rescentNews= $Product->findAllRescentPublish('19');
+        if ($product) {
+
+            $curView = $product->getView();
+            $upView = $curView + 1;
+            $product->setView($upView);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($product);
+            $em->flush();
+
+        }
+       /* try { $item = $this->getResolver()->resolve($emptyItem, $request); }
+        catch (ItemResolvingException $exception)
+        { Write flash message  $this->dispatchEvent(SyliusCartEvents::ITEM_ADD_ERROR, new FlashEvent
+        ($exception->getMessage()));
+         return $this->redirectToCartSummary(); }*/
+
+
+        return $this->render('default/brows.html.twig', array(
+
+            'selectedProduct' =>  $product,
+            'customersChoiceProducts' => $customersChoiceProducts,
+            'sponsoredProducts' => $sponsoredProducts,
+            'similarProducts'=>$similarProducts,
+            //'form' =>$form->createView(),
+
+
+        ));
+    }
+
     /**
      * @Route("/", name = "home")
      */
@@ -51,46 +104,6 @@ class DefaultController extends Controller
     }
 
 
-    /**
-     * @Route("/brows/{id}", name="brows product")
-     */
-    public function browsProductAction($id)
-    {
-
-        $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
-        $product = $Product->find($id);
-
-        $customersChoiceProducts = $Product->mostView('20');
-        $sponsoredProducts = $Product->findAllRecentProducts('15');
-        $similarProducts = $Product->findAllRecentProducts('15');
-
-        //$rescentNews= $Product->findAllRescentPublish('19');
-
-
-
-        if ($product) {
-
-            $curView = $product->getView();
-            $upView = $curView + 1;
-            $product->setView($upView);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($product);
-            $em->flush();
-
-        }
-
-
-
-        return $this->render('default/brows.html.twig', array(
-
-            'selectedProduct' =>  $product,
-            'customersChoiceProducts' => $customersChoiceProducts,
-            'sponsoredProducts' => $sponsoredProducts,
-            'similarProducts'=>$similarProducts
-
-        ));
-    }
 
 
     /**
