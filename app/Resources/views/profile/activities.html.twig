@@ -273,10 +273,37 @@
         </ul>
 
         <!-- Tab panes -->
-        <div >
-            <div>...2</div>
+
+            <div >
+                <div class="col-sm-9 well-lg" >
+                    <div class="panel panel-default">
+
+                        {% if link ==  "communication" %}
+                        <div class="panel panel-heading">
+                            Communication Preference
+                        </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+                <div class="clear-fix"></div>
+                <div class="col-sm-3" >
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav nav-pills nav-stacked" id="side-menu">
+                            <div class="list-group-info">
+                                <h4 class="list-group-item">My Account Information</h4>
+                            </div>
+
+                            <li{% if link ==  "cart" %} class ="active"{% endif %}
+                                    ><a href="/profile/activities/cart">
+                                    Cart Summary</a></li>
+                            <li{% if link ==  "order" %} class ="active"{% endif %}
+                                    ><a href="/profile/activities/order">Order History</a></li>
+
+                        </ul>
+                    </div>
+                </div>
 
         </div>
 
-    </div>
 {% endblock %}

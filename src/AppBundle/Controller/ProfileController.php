@@ -29,13 +29,7 @@ class ProfileController extends baseProfiler
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
-        /*get settings and check for the default profile
-         if default profile page is account
-           set url to account page
-         else if default profile page is activities
-           set url to activities
-          */
-        //default hardcoded url == account
+
         $url="/profile/account.html.twig";
 
         return $this->render('default/profile.html.twig', array(
@@ -49,36 +43,45 @@ class ProfileController extends baseProfiler
 
 
     /**
-     * @Route("/profile/account", name="showProfileAccount")
+     * @Route("/profile/account/{link}", defaults={"link" = "personalInfo"},name="showProfileAccount")
      */
-    public function showAccountAction()
+    public function showAccountAction(Request $request,$link)
     {
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
+        $this->denyAccessUnlessGranted('ROLE_CUSTOMER', null, 'Unable to access this page! You must be customer to
+        access');
 
-        $url="1";
+
+
+        $url = $request->query->get('url');
 
         return $this->render('default/profile.html.twig', array(
             'user' => $user,
-            'account'=>$url
+            'account'=>$url,
+            'link' => $link,
+
 
         ));
     }
     /**
-     * @Route("/profile/activities", name="showProfileActivities")
+     * @Route("/profile/activities/{link}", defaults={"link" = "cart"}, name="showProfileActivities")
      */
-    public function showActivityAction()
+    public function showActivityAction(Request $request,$link)
     {
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
+        $this->denyAccessUnlessGranted('ROLE_CUSTOMER', null, 'Unable to access this page! You must be customer to
+        access');
         $url="1";
         return $this->render('default/profile.html.twig', array(
             'user' => $user,
-            'activities'=>$url
+            'activities'=>$url,
+            'link' => $link,
         ));
     }
 }

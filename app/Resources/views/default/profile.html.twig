@@ -11,7 +11,9 @@
             <li><strong>You are here :</strong></li>
             <li><a href="{{ path('home') }}">Home</a></li>
             <li class="disabled"><a href="/profile">Profile</a></li>
-            <li class="active"><a href="#/profile/account/"><strong>Account</strong></a></li>
+            <li class="disabled"><a href="#">Account</a></li>
+            <li class="active"><a href="#/profile/account/{{ link }}"><strong>{{ link |title }}</strong></a></li>
+            {{ account }}
         </ol>
 
 
