@@ -30,6 +30,8 @@ class DepartmentType extends AbstractType
         $builder
             ->add('name', 'text', array('label' => 'Name','attr' => array('class'=>'form-control')))
             ->add('logoFile', 'file', array('label' => 'Logo', 'required' => false, 'attr' => array('class'=>'form-control')))
+            ->add('navigationLogoFile', 'file', array('label' => 'Navigation Image', 'required' => false, 'attr' =>
+                array('class'=>'form-control')))
             ->add('visible','choice',array(
                 'label' => 'Status',
                 'choices' => array('1' => 'Visible', '0' => 'hidden'),

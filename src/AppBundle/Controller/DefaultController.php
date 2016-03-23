@@ -67,21 +67,22 @@ class DefaultController extends  Controller
      */
     public function indexAction(Request $request)
     {
-
+        $limit = 6;
         $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
-
+        $Department = $this->getDoctrine()->getRepository('AppBundle:Department');
         //$mostRead=$Product->mostView('20');
        // $newArrivals = $Product->findAllRecentProducts('15');
         $newArrivals = $Product->findAllRecentProducts('15');
         $featuredProducts = $Product->findAllRecentProducts('15');
         $sponsoredProducts = $Product->findAllRecentProducts('15');
-
+        $departments=$Department->findDepartment($limit);
 
 
         return $this->render('default/index.html.twig', array(
             'newArrivals' => $newArrivals,
             'featuredProducts' => $featuredProducts,
-            'sponsoredProducts' => $sponsoredProducts
+            'sponsoredProducts' => $sponsoredProducts,
+            'departments'=>$departments
 
         ));
     }

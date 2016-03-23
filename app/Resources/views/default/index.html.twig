@@ -59,25 +59,19 @@
 {% block content %}
 
 
+    {% for department in departments %}
 
-
-    
-
-
-    <div class="row">
-        <div class="col-sm-6" >
-            <div style=" margin: 5px; height:260px" class="thumbnail">
-                <a href="department.php?sel_dept_id=15">
-                    <img src="images/ou dooccr.png" alt="Activity" style="width:auto;  height:245px"></a>
+            <div class="col-sm-6" >
+                <div style=" margin: 50px 1px; height:290px" class="thumbnail">
+                    <a href="/department/{{ department.id }}">
+                        <img src="{{ vich_uploader_asset(department, 'logoFile') }}" alt="{{ department.name }}"
+                             style="width:auto;  height:245px"></a>
+                </div>
+              {#  <p>{{ department.description }}</p>#}
             </div>
-        </div>
-        <div class="col-sm-6" >
-            <div style=" margin: 5px; height:260px" class="thumbnail">
-                <a href="department.php?sel_dept_id=1">
-                    <img src="images/babies.png" alt="Babies" style="width:auto;  height:245px"></a>
-            </div>
-        </div>
-    </div>
+
+    {% endfor %}
+
 
     {% if newArrivals is defined %}
         <div class="row">
@@ -103,21 +97,7 @@
         </div>
     {% endif %}
 
-    <div class="row">
-        <div class="col-sm-6" >
-            <div style=" margin: 5px; height:260px" class="thumbnail">
-                <a href="department.php?sel_dept_id=4">
-                    <img src="images/B2xxs1.jpg" alt="Back to School"  style="width:540px;  height:245px"></a>
-            </div></div>
-        <div class="col-sm-6" >
-            <div style=" margin: 5px; height:260px" class="thumbnail">
-                <a href="department.php?sel_dept_id=16">
-                    <img src="mul_slide/img/owlxx3.jpg" alt="HOMES" style="width:auto;  height:170px"></a>
-            </div></div>
-    </div>
 
-    <div class="row">
-        <div class="col-sm-12" >
             {% if featuredProducts is defined %}
                 <div class="row">
                     <div class="col-sm-12" >
@@ -141,27 +121,27 @@
                     </div>
                 </div>
             {% endif %}
-        </div>
-    </div>
+
 
 
     <div class="row">
         <div id="advart" class="col-sm-6" >
             <div style="  height:260px" class="thumbnail">
                 <a href="#brows.php?produc_id=">
-                    <img src="../mul_slide/img/owl4.jpg" alt="Advert" style="width:auto;  height:170px"></a>
-            </div></div>
-
+                    <img src="../mul_slide/img/owl4.jpg" alt="Advert" style="width:auto;  height:170px">
+                </a>
+            </div>
+        </div>
         <div id="promo" class="col-sm-6" >
             <div style="  height:260px" class="thumbnail">
                 <a href="#brows.php?produc_id=">
                     <img src="../mul_slide/img/owl4.jpg" alt="promo" style="width:auto;  height:170px"></a>
-            </div></div>
+            </div>
+        </div>
     </div>
 
 
-    <div class="row">
-        <div class="col-sm-12" >
+
             {% if sponsoredProducts is defined %}
                 <div class="row">
                     <div class="col-sm-12" >
@@ -184,9 +164,6 @@
                     </div>
                 </div>
             {% endif %}
-        </div>
-    </div>
-
 
 
 {% endblock %}

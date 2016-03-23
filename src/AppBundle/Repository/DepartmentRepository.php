@@ -70,12 +70,14 @@ class DepartmentRepository extends EntityRepository
             ->getResult();
     }
 
-    public function importantDepartment($limit)
+    public function findDepartment($limit)
     {
         return $this
             ->createQueryBuilder('n')
             ->select('n')
-            ->orderBy('n.priorit', 'DESC')
+            ->where('n.visible = :yes')
+            ->setParameter('yes',1)
+            ->orderBy('n.position', 'ASC')
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();

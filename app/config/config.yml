@@ -198,7 +198,7 @@ knp_paginator:
 
 
 vich_uploader:
-    db_driver: orm # or mongodb or propel or phpcr
+    db_driver: orm
     mappings:
              brand_logo:
                 uri_prefix:         /uploads/images/logo/brands
@@ -235,43 +235,14 @@ vich_uploader:
                  delete_on_update:   true
                  delete_on_remove:   true
                  namer:              vich_uploader.namer_uniqid
+
              department_Image:
-                 uri_prefix:         /uploads/images/logo/departments
-                 upload_destination: %kernel.root_dir%/../web/uploads/logo/images/departments
+                 uri_prefix:         /uploads/images/logo/departments/navImages
+                 upload_destination: %kernel.root_dir%/../web/uploads/logo/images/departments/navImages
 
                  inject_on_load:     false
                  delete_on_update:   true
                  delete_on_remove:   true
                  namer:              vich_uploader.namer_uniqid
-             department_Image:
-                 uri_prefix:         /uploads/images/departments
-                 upload_destination: %kernel.root_dir%/../web/uploads/images/departments
 
-                 inject_on_load:     false
-                 delete_on_update:   true
-                 delete_on_remove:   true
-                 namer:              vich_uploader.namer_uniqid
-             department_Image:
-                 uri_prefix:         /uploads/images/departments
-                 upload_destination: %kernel.root_dir%/../web/uploads/images/departments
 
-                 inject_on_load:     false
-                 delete_on_update:   true
-                 delete_on_remove:   true
-                 namer:              vich_uploader.namer_uniqid
-             department_Image:
-                 uri_prefix:         /uploads/images/departments
-                 upload_destination: %kernel.root_dir%/../web/uploads/images/departments
-
-                 inject_on_load:     false
-                 delete_on_update:   true
-                 delete_on_remove:   true
-                 namer:              vich_uploader.namer_uniqid
-             department_Image:
-                 uri_prefix:         /uploads/images/departments
-                 upload_destination: %kernel.root_dir%/../web/uploads/images/departments
-
-                 inject_on_load:     false
-                 delete_on_update:   true
-                 delete_on_remove:   true
-                 namer:              vich_uploader.namer_uniqid

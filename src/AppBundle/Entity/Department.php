@@ -56,6 +56,23 @@ class Department
      */
     private $logo;
 
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="department_image", fileNameProperty="navigationLogo")
+     *
+     * @var File
+     */
+    private $navigationLogoFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $navigationLogo;
+
     /**
      * @ORM\Column(type="smallint")
      *
