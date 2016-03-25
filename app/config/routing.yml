@@ -7,11 +7,11 @@ sylius_order:
 
 
 
- #user_one_registration:
+ #employee_registration:
      #pattern:  /register/employee
   #   defaults: { _controller: AppBundle:Employee:register }
 
-user_two_registration:
+customer_registration:
     pattern:  /register/customer
     defaults: { _controller: AppBundle:Customer:register }
 

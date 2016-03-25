@@ -29,14 +29,14 @@ class CustomerType extends AbstractType
         //     $builder->add('content', null, array('required' => false));
 
         $builder
-            ->add('firstName', 'text', array('label' => ' First Name','attr' => array('class'=>'form-control')))
+            ->add('firstName', 'text', array('label' => ' First Name','translation_domain' => 'FOSUserBundle'))
             ->add('lastName', 'text', array('label' => ' Last Name', 'translation_domain' => 'FOSUserBundle',))
 
             ->add('phone', 'number', array('label' => ' Phone','translation_domain' => 'FOSUserBundle',))
 
             ->add('email', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\EmailType'), array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
-
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
+            ->add('receivePromo', 'checkbox', array('label' => 'Receive Promotional Offer','required' => false))
 
             ->add('plainPassword', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\RepeatedType'), array(
                 'type' => LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'),

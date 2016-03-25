@@ -20,6 +20,11 @@ background: rgb(113,223,113);
     background: rgb(255,77,77);
     color: #fff;
 }
+.form-error {
+    background-color:lemonchiffon ;
+    border:1px dashed orange ;
+    padding:3px
+}
 .news{
     overflow-y: scroll;
     height: 400px;
