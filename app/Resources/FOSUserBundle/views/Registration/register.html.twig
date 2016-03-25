@@ -2,14 +2,21 @@
 
 
 {% block content %}
-    <div class="row">
-        <div class="col s12 m8 offset-m2">
-            <h4 class="card-panel teal lighten-2 white-head">Signup</h4>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col s12 m8 offset-m2">
-            {% include "FOSUserBundle:Registration:register_content.html.twig" %}
-        </div>
+
+     <div class="row">
+         <div style="margin-left: 70px; margin-right: 70px;" class="panel panel">
+             <div class="panel panel-body">
+              <h2>Get Started With Nimi Kiddies <a><i class="fa fa-heart fa-fw"></i></a></h2>
+                    <div class="col-sm-9">
+                        {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+                    </div>
+                    <div class="col-sm-3">
+                        <h2>Already a user ?</h2>
+                        <fieldset style="text-align:center; ">
+                            <a href="login.php" class="btn btn-lg btn-outline btn-success " >Sign In</a>
+                        </fieldset>
+                    </div>
+             </div>
+         </div>
     </div>
 {% endblock %}

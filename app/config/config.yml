@@ -42,7 +42,7 @@ fos_user:
     #enable email confirmation
     registration:
             confirmation:
-                enabled: true
+                enabled: false
                 from_email:
                     address:        registration@nimikiddies.com
                     sender_name:    Customer Welfare Unit
@@ -79,7 +79,7 @@ pugx_multi_user:
         registration:
           form:
             type: AppBundle\Form\Type\CustomerType
-          #template: AppBundle:Registration:customer.form.html.twig
+          template: FOSUserBundle:Registration:customer.html.twig
         profile:
           form:
             type: AppBundle\Form\Type\ProfileCustomerType
