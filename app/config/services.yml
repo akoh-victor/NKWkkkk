@@ -16,3 +16,40 @@ services:
            class:        AppBundle\Service\Cart\ItemResolver
            arguments:
              - "@doctrine.orm.entity_manager"
+
+
+  pagerfanta.view.security:
+      class: Pagerfanta\View\OptionableView
+      arguments:
+          - @pagerfanta.view.default
+          - { proximity: 2, previous_message: Anterior, next_message: Siguiente }
+      public: false
+      tags: [{ name: pagerfanta.view, alias: security }]
+  pagerfanta.view.address:
+      class: Pagerfanta\View\OptionableView
+      arguments:
+          - @pagerfanta.view.default
+          - { proximity: 5 }
+      public: false
+      tags: [{ name: pagerfanta.view, alias: address }]
+  pagerfanta.view.shipping:
+      class: Pagerfanta\View\OptionableView
+      arguments:
+          - @pagerfanta.view.default
+          - { proximity: 5 }
+      public: false
+      tags: [{ name: pagerfanta.view, alias: shipping }]
+  pagerfanta.view.payment:
+      class: Pagerfanta\View\OptionableView
+      arguments:
+          - @pagerfanta.view.default
+          - { proximity: 5 }
+      public: false
+      tags: [{ name: pagerfanta.view, alias: payment }]
+  pagerfanta.view.confirm:
+      class: Pagerfanta\View\OptionableView
+      arguments:
+          - @pagerfanta.view.default
+          - { proximity: 5 }
+      public: false
+      tags: [{ name: pagerfanta.view, alias: confirm }]
