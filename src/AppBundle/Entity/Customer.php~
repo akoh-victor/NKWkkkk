@@ -24,6 +24,7 @@ class Customer extends User
     {
         parent::__construct();
         // your own logic
+        $this->roles = array('ROLE_CUSTOMER');
     }
 
     /**
@@ -35,38 +36,34 @@ class Customer extends User
      */
     protected $lastName;
     /**
-     * @ORM\Column(type="integer", length=100,nullable= null)
+     * @ORM\Column(type="integer", length=100,nullable=false)
      */
     protected $phone;
 
     /**
-     * @ORM\Column(type="text",nullable=null)
+     * @ORM\Column(type="text",nullable=true)
      */
     protected $billingAddress;
     /**
-     * @ORM\Column(type="text",nullable=null)
+     * @ORM\Column(type="text",nullable=true)
      */
     protected $contactAddress;
-    /**
-     * @ORM\Column(type="string", length=100,nullable=null)
-     */
-    protected $country;
 
     /**
-     * @ORM\Column(type="string", length=100,nullable=null)
+     * @ORM\Column(type="string", length=100,nullable=true)
      */
     protected $state;
     /**
-     * @ORM\Column(type="string", length=100,nullable=null)
+     * @ORM\Column(type="string", length=100,nullable=true)
      */
     protected $city;
     /**
-     * @ORM\Column(type="smallint",nullable=null)
+     * @ORM\Column(type="smallint",nullable=true)
      *
      */
     protected $receivePromo;
     /**
-     * @ORM\Column(type="integer",nullable=null)
+     * @ORM\Column(type="integer",nullable=true, options={"unsigned":true, "default":0})
      */
     protected $login_count;
 

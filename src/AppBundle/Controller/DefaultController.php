@@ -114,7 +114,7 @@ class DefaultController extends  Controller
     {
         $Department = $this->getDoctrine()->getRepository('AppBundle:Department');
         $department = $Department->find($id);
-
+        $departments = $Department->findAllOrderedById();
         $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
         $customersChoiceProducts = $Product->mostView('20');
 
@@ -131,6 +131,7 @@ class DefaultController extends  Controller
         return $this->render('default/department.html.twig', array(
             'pagination' => $pagination,
             'department'=>$department,
+            'departments'=>$departments,
             'customersChoiceProducts'=>$customersChoiceProducts,
         ));
     }
@@ -140,8 +141,10 @@ class DefaultController extends  Controller
      */
     public function categoryAction(Request $request,$categoryId)
     {
-        $Department = $this->getDoctrine()->getRepository('AppBundle:Category');
-        $category = $Department->find($categoryId);
+        $Department = $this->getDoctrine()->getRepository('AppBundle:Department');
+        $Category = $this->getDoctrine()->getRepository('AppBundle:Category');
+        $category = $Category->find($categoryId);
+        $departments = $Department->findAllOrderedById();
 
         $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
         $customersChoiceProducts = $Product->mostView('20');
@@ -158,6 +161,7 @@ class DefaultController extends  Controller
         return $this->render('default/category.html.twig', array(
             'pagination' => $pagination,
             'category'=>$category,
+            'departments'=>$departments,
             'customersChoiceProducts'=>$customersChoiceProducts,
         ));
     }

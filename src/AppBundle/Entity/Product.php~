@@ -87,7 +87,7 @@ class Product
      */
     protected $created;
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date",nullable=true)
      */
     protected $manufactured;
     /**
@@ -96,7 +96,7 @@ class Product
      */
     protected $expire;
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",nullable=true)
      */
     protected $openingQuantity;
     /**
