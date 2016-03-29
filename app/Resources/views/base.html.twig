@@ -31,22 +31,65 @@
 
 {% endblock %}
  </head>
- <body style="background-color: #eee8d5">
+ <body>
   <header>
   </header>
+<div class="container-fluid">
+    {% block header %}
+    {% if departments is defined %}
+        <nav>
+            <ul>
+                {% for department in departments %}
+                <li ><a href="/department/{{ department.id }}">{{ department.name | title }}<span class="caret"></span></a>
+                <div>
+                    <div class="col-sm-4">
+                    <ul>
+                        {% for category in department.category %}
+                            <li><a href="/department/category/{{ category.id }}">{{ category.name |title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    </div>
 
+                    <div style="background: url('{{ vich_uploader_asset(department, 'logoFile') }}') no-repeat;
+                            background-size: cover;
+                           "class="col-sm-8">
+                        <a href="/department/{{ department.id }}">
+                            <div class="navLogoBadge">
+                                <h1 class="navLogoText">Explore all  {{ department.name }} </h1>
+                            </div>
+
+                        </a>
+                    </div>
+
+                </div>
+
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    {% endif %}
+    {% endblock %}
+    <div class="clear-fix"></div>
+</div>
       <div class="container">
          {% block body %}
 
           <div class="row">
+              <div class="col-sm-9">
               {% block slider %}
               {% endblock %}
+              </div>
+              <div class="col-sm-3">
+                  {% block ads %}
+                  {% endblock %}
+              </div>
           </div>
+             <div class="clear-fix"></div>
           <div class="row">
               {% block slogan %}
               {% endblock %}
           </div>
-          <div class="row" style="background-color: #b4bcc2">
+          <div class="row">
               {% block content %}
               {% endblock %}
           </div>

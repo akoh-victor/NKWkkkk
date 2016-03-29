@@ -3,6 +3,134 @@
  * 	Core SOLVE CSS File
  *	v1.0.0
  */
+
+
+
+body {
+    background-color: #EBE8E4;
+    color: #222;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+}
+nav {
+
+    border: 1px solid #dedede;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+    color: #888;
+    display: block;
+    margin: 30px 2% 30px 2%;
+    overflow: hidden;
+    width: 96%;
+    padding:  0% 2%;
+}
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    list-style-type: none;
+
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+nav > ul > li > a {
+    color: black;
+    display: block;
+    line-height: 50px;
+    padding: 0 24px;
+    text-decoration: none;
+}
+
+nav > ul > li > a > .caret {
+    border-top: 4px solid #aaa;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    content: "";
+    display: inline-block;
+    height: 0;
+    width: 0;
+    vertical-align: middle;
+
+    -webkit-transition: color 0.1s linear;
+    -moz-transition: color 0.1s linear;
+    -o-transition: color 0.1s linear;
+    transition: color 0.1s linear;
+}
+
+/*hover state*/
+nav > ul > li:hover {
+    background-color: rgb( 40, 44, 47 );
+}
+
+nav > ul > li:hover > a {
+    color: rgb( 255, 255, 255 );
+}
+
+nav > ul > li:hover > a > .caret {
+    border-top-color: rgb( 255, 255, 255 );
+}
+
+/*second tier div*/
+nav > ul > li > div {
+    background-color: snow;
+    border-top: 0;
+    border-radius: 0 0 7px 7px;
+    box-shadow: 0 7px 7px -1px rgba(0, 0, 0, 0.055);
+    display: none;
+    margin: 0;
+    padding: 0.2em ;
+    opacity: 0;
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    width: 90%;
+    height: 20em;
+    visibility: hidden;
+    z-index: 100;
+
+    -webkit-transiton: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    -transition: opacity 0.2s;
+}
+/*display the child element on hover */
+nav > ul > li:hover > div {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+nav > ul > li > div > div > a :hover {
+    color: red;
+}
+
+/**/
+.navLogoBadge {
+    opacity: 0.6;
+    height: inherit;
+    width: 35%;
+    background-color: #dfdfdf;
+    padding: 1.5em;
+    margin: 1.5em;
+
+}
+
+.navLogoText{
+   text-decoration: none;
+    font-style: oblique;
+    color: #2C3E50;
+
+
+}
+
 .msg{
 background: rgb(113,223,113);
     color: rgb(38,88,38);
@@ -12,6 +140,7 @@ background: rgb(113,223,113);
     margin: 0;
     list-style-type: none;
 }
+
 .msg li:last-child{
     padding: 0 0.813em ;
     list-style-type: none;
