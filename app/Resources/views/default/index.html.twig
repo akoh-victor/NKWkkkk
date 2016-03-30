@@ -57,16 +57,26 @@
 
 {% block content %}
 
+<h2 class="h2 -underline" >Featured Departments</h2>
 
     {% for department in departments %}
 
             <div class="col-sm-6" >
-                <div style=" margin: 50px 1px; height:290px" class="thumbnail">
+                <div style=" margin: 12px 0px; height:290px" class="thumbnail">
                     <a href="/department/{{ department.id }}">
                         <img src="{{ vich_uploader_asset(department, 'logoFile') }}" alt="{{ department.name }}"
                              style="width:auto;  height:245px"></a>
                 </div>
-              {#  <p>{{ department.description }}</p>#}
+              <div style=" margin: 0px 0px 50px; font-family: Aleo Regular,Palatino Linotype,Palatino;
+margin-left: 0px;
+text-overflow: clip;
+height: 118px;
+width: 420px;
+white-space: normal;
+padding: 0px;">
+                  <h3>{{ department.topic }}test text goes here</h3>
+                  <p>{{ department.description }}</p>
+              </div>
             </div>
 
     {% endfor %}
