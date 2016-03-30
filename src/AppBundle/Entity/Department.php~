@@ -33,6 +33,10 @@ class Department
      */
     protected $name;
     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $topic;
+    /**
      * @ORM\Column(type="text")
      */
     protected $description;

@@ -33,6 +33,10 @@ class Department
      */
     protected $name;
     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $topic;
+    /**
      * @ORM\Column(type="text")
      */
     protected $description;
@@ -366,5 +370,28 @@ class Department
     public function getNavigationLogo()
     {
         return $this->navigationLogo;
+    }
+
+    /**
+     * Set topic
+     *
+     * @param string $topic
+     * @return Department
+     */
+    public function setTopic($topic)
+    {
+        $this->topic = $topic;
+
+        return $this;
+    }
+
+    /**
+     * Get topic
+     *
+     * @return string 
+     */
+    public function getTopic()
+    {
+        return $this->topic;
     }
 }
