@@ -4,8 +4,10 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\File;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -18,6 +20,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Group
 {
+
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->brand = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->product = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -29,11 +43,12 @@ class Group
      */
     protected $name;
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",nullable=true)
      */
     protected $description;
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",nullable=true)
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $position;
 
@@ -42,7 +57,30 @@ class Group
      *
      */
     protected $visible;
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="group_logo", fileNameProperty="logo")
+     *
+     * @var File
+     */
+    private $logoFile;
 
+    /**
+     * @ORM\Column(type="string", length=255,nullable=true)
+     *
+     * @var string
+     */
+    private $logo;
+    /**
+     * @ORM\Column(type="datetime",nullable=true)
+     *
+     * @var \DateTime
+     */
+    private $updatedAt;
+    
+    
+    //relationship definition
     /**
      * @ORM\ManyToOne(targetEntity="Category", inversedBy="group")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
@@ -66,10 +104,10 @@ class Group
      */
     private $brand;
 
-    public function __con()
+   /* public function __con()
     {
         $this->brand = new ArrayCollection();
-    }
+    }*/
 
 
 
@@ -263,13 +301,82 @@ class Group
     {
         return $this->product;
     }
+ 
     /**
-     * Constructor
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $logo
+     *
+     * @return Brand
      */
-    public function __construct()
+    public function setLogoFile(File $logo = null)
     {
-        $this->brand = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->product = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->logoFile = $logo;
+
+        if ($logo) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function logoFile()
+    {
+        return $this->logoFile;
+    }
+    /**
+     * Set logo
+     *
+     * @param string $logo
+     * @return Group
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * Get logo
+     *
+     * @return string
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return Group
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 
 }

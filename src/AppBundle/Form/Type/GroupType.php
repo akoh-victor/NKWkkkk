@@ -29,17 +29,17 @@ class GroupType extends AbstractType
 
         $builder
             ->add('name', 'text', array('label' => 'Name','attr' => array('class'=>'form-control')))
-
             ->add('visible','choice',array(
                 'label' => 'Status',
                 'choices' => array('1' => 'Visible', '0' => 'hidden'),
                 'attr' => array('class'=>'form-control')
             ))
-
+            ->add('logoFile', 'file', array('label' => 'Group Logo', 'required' => false, 'attr' =>
+                array('class'=>'form-control')))
             ->add('description', 'textarea', array(
                 'attr' => array('cols' => 70,
                     'rows' => 1,'class'=>'form-control'),
-                'label' => 'Description'
+                'label' => 'Description' ,'required' => false,
             ));
     }
 

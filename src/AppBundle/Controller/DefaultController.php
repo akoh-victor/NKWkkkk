@@ -67,7 +67,7 @@ class DefaultController extends  Controller
      */
     public function indexAction(Request $request)
     {
-        $limit = 6;
+        $limit = 8;
         $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
         $Department = $this->getDoctrine()->getRepository('AppBundle:Department');
         //$mostRead=$Product->mostView('20');

@@ -30,7 +30,9 @@ class DepartmentController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $department->setPosition(1);
+            // am using the id as position until i upgrade to generating new position
+            $curPosition = $department->getId();
+            $department->setPosition( $curPosition);
             $em = $this->getDoctrine()->getManager();
             $em->persist($department);
             $em->flush();

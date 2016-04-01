@@ -6,7 +6,11 @@
  <div class="col-sm-6 col-md-8 col-lg-8">
      <div class="jumbotron">
 
-        {% block bodyTitle %}  <h3 class="h1">Create News </h3>   {% endblock %}
+        {% block bodyTitle %}  <h3 class="h1">Create Category{%  if department is defined %} for {{ department.name
+            |title
+            }}{%
+            endif %} </h3>   {%
+         endblock %}
         {{ include('admin/_form.html.twig') }}
 
      </div>

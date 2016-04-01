@@ -235,14 +235,22 @@ vich_uploader:
                  delete_on_update:   true
                  delete_on_remove:   true
                  namer:              vich_uploader.namer_uniqid
-
-             department_nav_logo:
-                 uri_prefix:         /uploads/images/logo/departments/navImages
-                 upload_destination: %kernel.root_dir%/../web/uploads/images/logo/departments/navImages
+             department_Navlogo:
+                 uri_prefix:         /uploads/images/logo/departments/nav
+                 upload_destination: %kernel.root_dir%/../web/uploads/images/logo/departments/nav
 
                  inject_on_load:     false
                  delete_on_update:   true
                  delete_on_remove:   true
                  namer:              vich_uploader.namer_uniqid
+             group_logo:
+                 uri_prefix:         /uploads/images/logo/groups
+                 upload_destination: %kernel.root_dir%/../web/uploads/images/logo/groups
+
+                 inject_on_load:     false
+                 delete_on_update:   true
+                 delete_on_remove:   true
+                 namer:              vich_uploader.namer_uniqid
+
 
 
