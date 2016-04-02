@@ -37,13 +37,14 @@ class Department
      */
     protected $topic;
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",nullable=true)
      */
     protected $description;
     /**
      * @ORM\Column(type="integer")
      */
     protected $position;
+
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
@@ -61,25 +62,21 @@ class Department
     private $logo;
 
 
-
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="department_nav_logo", fileNameProperty = "navigationLogo")
+     * @Vich\UploadableField(mapping="department_Navlogo", fileNameProperty="image")
      *
      * @var File
      */
-    private $navigationLogoFile;
-
-
-
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
      *
      * @var string
      */
-    private $navigationLogo;
+    private $image;
 
     /**
      * @ORM\Column(type="smallint")
@@ -261,6 +258,32 @@ class Department
     }
 
 
+
+    /**
+     * Set Image
+     *
+     * @param string $image
+     * @return Department
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+
+
     /**
      * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
      * of 'UploadedFile' is injected into this setter to trigger the  update. If this
@@ -268,15 +291,15 @@ class Department
      * must be able to accept an instance of 'File' as the bundle will inject one here
      * during Doctrine hydration.
      *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $navigationLogo
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
      *
-     * @return Department
+     * @return Brand
      */
-    public function setNavigationLogoFile(File $navigationLogo = null)
+    public function setImageFile(File $image = null)
     {
-        $this->navigationLogoFile = $navigationLogo;
+        $this->imageFile = $image;
 
-        if ($navigationLogo) {
+        if ($image) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
             $this->updatedAt = new \DateTime('now');
@@ -288,10 +311,11 @@ class Department
     /**
      * @return File
      */
-    public function navigationLogoFile()
+    public function imageFile()
     {
-        return $this->navigationLogoFile;
+        return $this->imageFile;
     }
+
 
 
     /**
@@ -347,29 +371,6 @@ class Department
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Set navigationLogo
-     *
-     * @param string $navigationLogo
-     * @return Department
-     */
-    public function setNavigationLogo($navigationLogo)
-    {
-        $this->navigationLogo = $navigationLogo;
-
-        return $this;
-    }
-
-    /**
-     * Get navigationLogo
-     *
-     * @return string 
-     */
-    public function getNavigationLogo()
-    {
-        return $this->navigationLogo;
     }
 
     /**

@@ -19,6 +19,16 @@ class OrderItem extends SyliusCartItem
      */
     private $prod;
 
+
+
+
+     //relationship
+    /**
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="orderitem")
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable = false)
+     */
+    protected $product;
+
     /**
      * @return Product
      */
@@ -34,16 +44,6 @@ class OrderItem extends SyliusCartItem
     {
         $this->product = $prod;
     }
-
-
-
-
-     //relationship
-    /**
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="ordehritem")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable = false)
-     */
-    protected $product;
 
 
 

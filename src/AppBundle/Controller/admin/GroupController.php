@@ -35,8 +35,10 @@ class GroupController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            // am using the id as position until i upgrade to generating new position
+            $curPosition = $group->getId();
 
-            $group->setPosition(1);
+            $group->setPosition($curPosition);
             $group->setCategory($category);
             $em = $this->getDoctrine()->getManager();
             $em->persist($group);

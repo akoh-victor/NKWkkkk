@@ -42,7 +42,7 @@ fos_user:
     #enable email confirmation
     registration:
             confirmation:
-                enabled: true
+                enabled: false
                 from_email:
                     address:        registration@nimikiddies.com
                     sender_name:    Customer Welfare Unit
@@ -79,7 +79,7 @@ pugx_multi_user:
         registration:
           form:
             type: AppBundle\Form\Type\CustomerType
-          #template: AppBundle:Registration:customer.form.html.twig
+          template: FOSUserBundle:Registration:customer.html.twig
         profile:
           form:
             type: AppBundle\Form\Type\ProfileCustomerType
@@ -235,14 +235,22 @@ vich_uploader:
                  delete_on_update:   true
                  delete_on_remove:   true
                  namer:              vich_uploader.namer_uniqid
-
-             department_nav_logo:
-                 uri_prefix:         /uploads/images/logo/departments/navImages
-                 upload_destination: %kernel.root_dir%/../web/uploads/images/logo/departments/navImages
+             department_Navlogo:
+                 uri_prefix:         /uploads/images/logo/departments/nav
+                 upload_destination: %kernel.root_dir%/../web/uploads/images/logo/departments/nav
 
                  inject_on_load:     false
                  delete_on_update:   true
                  delete_on_remove:   true
                  namer:              vich_uploader.namer_uniqid
+             group_logo:
+                 uri_prefix:         /uploads/images/logo/groups
+                 upload_destination: %kernel.root_dir%/../web/uploads/images/logo/groups
+
+                 inject_on_load:     false
+                 delete_on_update:   true
+                 delete_on_remove:   true
+                 namer:              vich_uploader.namer_uniqid
+
 
 

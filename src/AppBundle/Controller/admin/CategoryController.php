@@ -34,8 +34,10 @@ class CategoryController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            // am using the id as position until i upgrade to generating new position
+            $curPosition = $category->getId();
 
-            $category->setPosition(1);
+            $category->setPosition( $curPosition);
             $category->setDepartment($department);
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
@@ -46,6 +48,7 @@ class CategoryController extends Controller
 
         return $this->render('admin/category.html.twig', array(
             'form' => $form ->createView(),
+            'department'=>$department
         ));
     }
 
@@ -73,8 +76,9 @@ class CategoryController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
-            $category->setPosition(1);
+            // am using the id as position until i upgrade to generating new position
+            $curPosition = $category->getId();
+            $category->setPosition( $curPosition);
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
