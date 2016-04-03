@@ -21,9 +21,10 @@ class GroupController extends Controller
     {
 
         $Category = $this->getDoctrine()->getRepository('AppBundle:Category');
+        $Group = $this->getDoctrine()->getRepository('AppBundle:Group');
 
         $category =  $Category->findOneById($category_id);
-
+        $groups = $Group->findCategoryGroup($category,10);
         $group = new Group();
 
         $form = $this->createForm(new GroupType(), $group)
@@ -49,6 +50,7 @@ class GroupController extends Controller
 
         return $this->render('admin/group.html.twig', array(
             'form' => $form ->createView(),
+            'groups'=>$groups,
         ));
     }
 

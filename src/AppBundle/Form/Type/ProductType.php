@@ -55,12 +55,13 @@ class ProductType extends AbstractType
             ->add('description', 'textarea', array(
                 'attr' => array('cols' => 70,
                     'rows' => 1,'class'=>'form-control'),
-                'label' => 'Description'
+                'label' => 'Description',
+                'required' => false,
             ))
             ->add('about', 'textarea', array(
-                'attr' => array('cols' => 70,
-                    'rows' => 1,'class'=>'form-control'),
-                'label' => 'About'
+                'attr' => array('cols' => 70,'rows' => 1,'class'=>'form-control'),
+                'label' => 'About',
+                'required' => false,
             ));
     }
 

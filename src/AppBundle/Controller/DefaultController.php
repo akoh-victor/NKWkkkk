@@ -113,19 +113,19 @@ class DefaultController extends  Controller
     public function departmentAction(Request $request,$id)
     {
         $Department = $this->getDoctrine()->getRepository('AppBundle:Department');
-        $department = $Department->find($id);
-        $departments = $Department->findAllOrderedById();
         $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
+        $department = $Department->find($id);
+        $departments = $Department->findDepartment('8');;
         $customersChoiceProducts = $Product->mostView('20');
 
 
-        $query = $query =  $Product->findDepartmentProduct($department);
+        $query =  $Product->findDepartmentProduct($department);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            8/*limit per page*/
+            10/*limit per page*/
         );
 
         return $this->render('default/department.html.twig', array(
@@ -144,7 +144,7 @@ class DefaultController extends  Controller
         $Department = $this->getDoctrine()->getRepository('AppBundle:Department');
         $Category = $this->getDoctrine()->getRepository('AppBundle:Category');
         $category = $Category->find($categoryId);
-        $departments = $Department->findAllOrderedById();
+        $departments = $Department->findDepartment(8);;
 
         $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
         $customersChoiceProducts = $Product->mostView('20');
@@ -177,6 +177,8 @@ class DefaultController extends  Controller
         $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
         $customersChoiceProducts = $Product->mostView('20');
 
+        $Department = $this->getDoctrine()->getRepository('AppBundle:Department');
+        $departments = $Department->findDepartment(8);
 
 
 
@@ -186,11 +188,12 @@ class DefaultController extends  Controller
         $pagination = $paginator->paginate(
             $query, /* query NOT result */
             $request->query->getInt('page', 1)/*page number*/,
-            8/*limit per page*/
+            25/*limit per page*/
         );
 
         return $this->render('default/group.html.twig', array(
             'pagination' => $pagination,
+            'departments'=>$departments,
             'group'=>$group,
             'customersChoiceProducts'=>$customersChoiceProducts,
         ));

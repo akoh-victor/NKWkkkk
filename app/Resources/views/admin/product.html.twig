@@ -6,17 +6,13 @@
  <div class="col-sm-6 col-md-8 col-lg-8">
      <div class="jumbotron">
 
-        {% block bodyTitle %}  <h3 class="h1">Create News </h3>   {% endblock %}
+        {% block bodyTitle %}  <h3 class="">Add Product to {{ group.name |title }} </h3>   {% endblock %}
         {{ include('admin/_form.html.twig') }}
 
      </div>
  </div>
 <div class="col-sm-6 col-md-3 col-lg-4">
         {% block sideBarRight %}
-
-
-
-
 
         {% endblock %}
 </div>

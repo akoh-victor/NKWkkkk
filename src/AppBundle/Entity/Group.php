@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
+ * @Vich\Uploadable
  * @ORM\Table(name="groups")
  * @ORM\HasLifecycleCallbacks
  * @ORM\Entity(repositoryClass="AppBundle\Repository\GroupRepository")
@@ -188,6 +189,20 @@ class Group
     public function getCategory()
     {
         return $this->category;
+    }
+
+
+    /**
+     * Has brand
+     *
+     * @param \AppBundle\Entity\Brand $brand
+     * @return boolean
+     */
+    public function hasBrand(\AppBundle\Entity\Brand   $brand)
+    {
+        if($this->brand->contains($brand)){
+            return true;
+        }
     }
 
     /**

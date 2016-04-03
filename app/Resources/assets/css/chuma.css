@@ -131,6 +131,29 @@ nav > ul > li > div > div > a :hover {
 
 }
 
+
+.product-filter {
+    background-color: white;
+    border-top: 0;
+    border-radius: 0 0 0 0;
+    box-shadow: 0 9px 9px -1px rgba(0, 0, 0, 0.055);
+    margin: 4em 1em 0;
+    padding: 1em ;
+    opacity: 3;
+    left: 5%;
+    right: 5%;
+    width: 100%;
+    min-height: 14em;
+    z-index: 100;
+
+    -webkit-transiton: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    -o-transition: opacity 0.2s;
+    -transition: opacity 0.2s;
+
+}
+
 .msg{
 background: rgb(113,223,113);
     color: rgb(38,88,38);
@@ -225,7 +248,7 @@ background: rgb(113,223,113);
 {
     display: inline;
     float: left;
-    margin: 2.3em 1.3em;
+    margin: 2.6em 1.3em;
 
 }
 
@@ -277,3 +300,4 @@ span img{
 .h2, h2 {
     font-size: 25px;
 }
+

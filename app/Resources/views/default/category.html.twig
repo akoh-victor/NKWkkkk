@@ -4,36 +4,43 @@
 
 {% block content %}
 
-<div  class="container panel panel-body">
     <ol class="breadcrumb">
         <li><strong>You are here :</strong></li>
         <li><a href="{{ path('home') }}">Home</a></li>
-        <li class="active"><a href="/department/{{ category.department.id }}">{{ category.department.name |title }}</a></li>
+        <li><a href="/department/{{ category.department.id }}">{{ category.department.name |title }}</a></li>
         <li class="active"><a href="/department/category/{{ category.id }}"><strong>{{ category.name |title }}</strong></a></li>
     </ol>
 
-       <div class="row panel panel-red">
-            <div class="col-sm-3">
-                <div class="">
-                {% for group in category.group %}
-                    <a href="/department/category/group/{{ group.id }}">   {{ group.name |title }}</a> <br />
-                {% endfor %}
-                </div>
-            </div>
-           <div class="col-sm-9">
-               <div style=" margin: 5px; height:260px" class="thumbnail">
-                   <a href="department.php?sel_dept_id=15">
-                       <img src="images/ou dooccr.png" alt="Activity" style="width:auto;  height:245px"></a>
-               </div>
-           </div>
+       <div  class="product-filter">
+           <table class="table">
+               <tr>
+                   <th>
+                       <strong> Groups :</strong>
+                   </th>
+                   {% for group in category.group %}
+                       <td>
+                           <a href="/department/category/group/{{ group.id }}">   {{ group.name |title }}</a>
+                       </td>
+                   {% endfor %}
+               </tr>
+               <tr>
+                   <th>
+                       <strong>Brand :</strong>
+                   </th>
+                       {% for group in category.group%}
+                           {% for brand in group.brand %}
+                               <td>
+                                   <a href="/department/category/{{ brand.id }}">   {{ brand.name |title }}</a>
+                               </td>
+                           {% endfor %}
+                       {% endfor %}
+               </tr>
+           </table>
        </div>
 
 
 
-
-
-    <div class="row">
-
+    <div  class="row product-filter">
             <div class="link">
                     <ul>
                         {% for product in pagination %}
@@ -55,7 +62,6 @@
                         {% endfor %}
                     </ul>
             </div>
-
     </div>
         {# display navigation #}
         <div class="">
@@ -89,7 +95,5 @@
             </div>
         </div>
 
-
-    </div>
 
 {% endblock %}

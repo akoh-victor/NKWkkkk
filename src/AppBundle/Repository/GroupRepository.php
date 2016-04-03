@@ -12,4 +12,19 @@ use Doctrine\ORM\EntityRepository;
  */
 class GroupRepository extends EntityRepository
 {
+
+    public function findCategoryGroup($category,$limit){
+        return $this
+            ->createQueryBuilder('n')
+            ->select('n')
+            ->where('n.category = :category')
+            ->andWhere('n.visible = :show')
+            ->setParameter('category',$category)
+            ->setParameter('show',1)
+            ->orderBy('n.id', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

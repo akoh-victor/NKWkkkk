@@ -10,7 +10,7 @@
     <li class="active"><a href="/department/{{ department.id }}"><strong>{{ department.name }}</strong></a></li>
     </ol>
 
-     <div class="row">
+     <div class="product-filter">
        <table class="table">
         <tr>
             <th>
@@ -22,32 +22,50 @@
                 </td>
             {% endfor %}
         </tr>
+        <tr>
+           <th>
+               <strong>Brand :</strong>
+           </th>
+           {% for category in department.category %}
+               {% for group in category.group %}
+                   {% for brand in group.brand %}
+                           <td>
+                               <a href="/department/category/{{ brand.id }}">   {{ brand.name |title }}</a>
+                           </td>
+                   {% endfor %}
+               {% endfor %}
+           {% endfor %}
+       </tr>
        </table>
      </div>
 
-    <div class="row">
-        <div class="pull-right">
-            <p>Total items for {{ pagination.getTotalItemCount }}</p>
+
+
+
+    <div class="row product-filter">
+        <div class="row">
+            <div style="padding-right: 4em" class="pull-right">
+                <p>Total items in {{ department.name |title }} {{ pagination.getTotalItemCount }}</p>
+            </div>
         </div>
 
-
             <div class="link">
-                    <ul>
+                <ul>
                         {% for product in pagination %}
-                            <li >
-                                      <a href="/brows/{{ product.id }}">
-                                           <span>  <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="height:290px"></span>
-                                           <h2 class="title">
-                                               <span class="brand">{{ product.brand.name |title}}</span>
-                                               <span class="name">{{ product.name|title }}</span>
-                                           </h2>
-                                            <span class="price-box">
-                                                <span>
-                                                    <span data-currency-iso="NGN">?</span>
-                                                    <span data-price="{{ product.price }}">{{ product.price }}</span>
-                                                </span>
+                            <li>
+                                  <a href="/brows/{{ product.id }}">
+                                       <span>  <img src="{{ vich_uploader_asset(product, 'frontImageFile') }}" alt="" style="height:290px"></span>
+                                       <h2 class="title">
+                                           <span class="brand">{{ product.brand.name |title}}</span>
+                                           <span class="name">{{ product.name|title }}</span>
+                                       </h2>
+                                        <span class="price-box">
+                                            <span>
+                                                <span data-currency-iso="NGN">?</span>
+                                                <span data-price="{{ product.price }}">{{ product.price }}</span>
                                             </span>
-                                      </a>
+                                        </span>
+                                  </a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -55,9 +73,9 @@
 
     </div>
         {# display navigation #}
-        <div class="">
-            {{ knp_pagination_render(pagination) }}
-        </div>
+    <div style="" class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 
         <div class="row">
             <div class="col-sm-12" >

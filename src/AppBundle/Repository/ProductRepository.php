@@ -187,18 +187,5 @@ class ProductRepository extends EntityRepository
 
 
 
-    public function findSliderNews($limit){
-        return $this
-            ->createQueryBuilder('n')
-            ->select('n')
-            ->where('n.slide = :show')
-            ->andWhere('n.expire = :no')
-            ->setParameter('no',0)
-            ->setParameter('show',1)
-            ->orderBy('n.id', 'DESC')
-            ->setMaxResults($limit)
-            ->getQuery()
-            ->getResult();
-    }
 
 }

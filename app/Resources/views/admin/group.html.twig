@@ -11,7 +11,12 @@
  </div>
 <div class="col-sm-6 col-md-3 col-lg-4">
         {% block sideBarRight %}
-
+            {% for group in groups %}
+                    <li>
+                        <a href='/admin/product/create/{{ group.id }}'><i class=""></i><strong>Start adding product to{{ group
+                                .name  }}</strong></a>
+                    </li>
+            {% endfor %}
         {% endblock %}
 </div>
     {% endblock %} 

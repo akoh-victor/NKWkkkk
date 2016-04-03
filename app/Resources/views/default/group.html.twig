@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<div  class="container panel panel-body">
+
     <ol class="breadcrumb">
         <li><strong>You are here :</strong></li>
         <li><a href="{{ path('home') }}">Home</a></li>
@@ -13,30 +13,26 @@
         <li class="active"><a href="/department/category/{{ group.id }}"><strong>{{ group.name |title }}</strong></a></li>
     </ol>
 
-    <div class="row panel panel-red">
-        <div class="col-sm-9">
-            <div class="">
-                <div style=" margin: 5px; height:260px" class="thumbnail">
-                    <a href="department.php?sel_dept_id=15">
-                        <img src="images/ou dooccr.png" alt="Activity" style="width:auto;  height:245px"></a>
-                </div>
+    <div class="row product-filter">
+        <div class="col-xs-8">
+            <div style=" margin: 12px 0px; height:290px" class="thumbnail">
+                    <img src="{{ vich_uploader_asset(group, 'logoFile') }}" alt="{{ group.name }}"
+                         style="display:block;max-width:100%;max-height: 100%">
             </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-xs-4">
 
         </div>
     </div>
 
 
 
-    <div class="row">
-        <div class="pull-right">
-            <p>Total items for {{ pagination.getTotalItemCount }}</p>
+    <div class="row product-filter">
+        <div style="padding-right: 4em" class="pull-right">
+            <p>Total items in {{ group.name |title }} {{ pagination.getTotalItemCount }}</p>
         </div>
 
-        <div class="">
-            {{ knp_pagination_render(pagination) }}
-        </div>
+
             <div class="link">
                     <ul>
                         {% for product in pagination %}
@@ -66,7 +62,7 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12" >
+            <div class="col-xs-12" >
                 {% if customersChoiceProducts is defined %}
                     <div class="row">
                         <div class="col-sm-12" >
@@ -91,8 +87,4 @@
                 {% endif %}
             </div>
         </div>
-
-
-    </div>
-
 {% endblock %}

@@ -37,7 +37,7 @@ class Product
      */
     protected $name;
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",nullable=true)
      */
     protected $description;
     /**
@@ -65,7 +65,7 @@ class Product
     private $rearImageFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      *
      * @var string
      */
@@ -91,12 +91,11 @@ class Product
      */
     protected $manufactured;
     /**
-     * @ORM\Column(type="date")
-     *
+     * @ORM\Column(type="date",nullable=true)
      */
     protected $expire;
     /**
-     * @ORM\Column(type="integer",nullable=true)
+     * @ORM\Column(type="integer")
      */
     protected $openingQuantity;
     /**
