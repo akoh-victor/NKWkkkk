@@ -203,8 +203,18 @@
             <div class="container-fluid">
                 <div class="row">
                    {% block page %}
-                       {% block bodyTitle %}  <h3 class="h1">Dashboard </h3>   {% endblock %}
 
+                           {% block bodyTitle %}  <h3 class="h1">Dashboard </h3>   {% endblock %}
+
+                        <div class="row">
+                                <div class="col-sm-7 col-md-8 col-lg-8">
+                                   {% block content %}{% endblock %}
+                                </div>
+
+                                <div class="col-sm-5 col-md-3 col-lg-4">
+                                    {% block sideBarRight %}{% endblock %}
+                               </div>
+                        </div>
                    {% endblock %}
                     </div>
                 <!-- /.col-lg-12 -->

@@ -342,27 +342,4 @@ class Advert
     }
 
 
-
-    /**
-     * Set subscribeDate
-     *
-     * @param \DateTime $subscribeDate
-     * @return Advert
-     */
-    public function setSubscribeDate($subscribeDate)
-    {
-        $this->subscribeDate = $subscribeDate;
-
-        return $this;
-    }
-
-    /**
-     * Get subscribeDate
-     *
-     * @return \DateTime 
-     */
-    public function getSubscribeDate()
-    {
-        return $this->subscribeDate;
-    }
 }

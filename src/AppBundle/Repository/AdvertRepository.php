@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class AdvertRepository extends EntityRepository
 {
+    public function ActiveAdverts($limit) {
+        return $this
+            ->createQueryBuilder('e')
+            ->select('e')
+            ->where('e.enabled <= :true')
+            ->andWhere('e.expired = :false')
+            ->setParameter('true',1)
+            ->setParameter('false',0)
+            ->orderBy('e.subscribeDate', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
 }

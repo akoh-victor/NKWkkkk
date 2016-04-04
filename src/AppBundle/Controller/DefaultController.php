@@ -31,7 +31,6 @@ class DefaultController extends  Controller
         $sponsoredProducts = $Product->findAllRecentProducts('15');
         $similarProducts = $Product->findAllRecentProducts('15');
 
-        //$rescentNews= $Product->findAllRescentPublish('19');
         if ($product) {
 
             $curView = $product->getView();

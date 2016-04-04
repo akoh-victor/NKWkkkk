@@ -18,7 +18,7 @@ class AdvertController extends Controller
     {
         $Advert = $this->getDoctrine()
             ->getRepository('AppBundle:Advert');
-        $rescentAdvert = $Advert->findAll();
+        $adverts = $Advert->ActiveAdverts(54);
 
         if (!$Advert)
         { throw
@@ -35,7 +35,7 @@ class AdvertController extends Controller
 
         if ($form->isValid()) {
 
-            $advert->setSuscribeDate(new \DateTime());
+            $advert->setSubscribeDate(new \DateTime());
             $advert->setExpired(0);
             $advert->setEnabled(0);
 
@@ -46,7 +46,7 @@ class AdvertController extends Controller
         }
         return $this->render('admin/advert.html.twig', array(
             'form' => $form ->createView(),
-            'advert'=>$rescentAdvert,
+            'adverts'=>$adverts,
 
         ));
     }
@@ -57,8 +57,7 @@ class AdvertController extends Controller
     /**
      * @Route("admin/news/edit/{id}", name="manage news")
      */
-
-    public function editAction($id){
+    public function editAdvertAction($id){
         $em = $this->getDoctrine()->getEntityManager();
         $Advert  = $em->getRepository('AppBundle:Advert')->find($id);
         $rescentAdvert = $em->getRepository('AppBundle:Advert')->findAllRescentPublish('20');
