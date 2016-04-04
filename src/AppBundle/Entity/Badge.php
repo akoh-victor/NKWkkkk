@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Repository\BadgeRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -14,12 +15,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @Vich\Uploadable
- * @ORM\Table(name="adverts")
+ * @ORM\Table(name="badges")
  * @ORM\HasLifecycleCallbacks
- * @ORM\Entity(repositoryClass="AppBundle\Repository\AdvertRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\BadgeRepository")
  */
 
-class Advert
+class Badge
 {
     /**
      * @ORM\Column(type="integer")
@@ -30,21 +31,21 @@ class Advert
     /**
      * @ORM\Column(type="string", length=100)
      */
-    protected $title;
+    protected $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",nullable=true)
      */
     protected $comment;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
-    protected $advertiser;
+    protected $url;
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="advert_logo", fileNameProperty="logo")
+     * @Vich\UploadableField(mapping="badge_logo", fileNameProperty="logo")
      *
      * @var File
      */
@@ -64,21 +65,8 @@ class Advert
     /**
      * @ORM\Column(type="integer", length=1)
      */
-    protected $enabled;
+    protected $enable;
 
-    /**
-     * @ORM\Column(type="integer", length=1)
-     */
-    protected $expired;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    protected $expiresAt;
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    protected $suscribeDate;
     /**
      * @ORM\Column(type="datetime",nullable = true)
      *
@@ -98,32 +86,6 @@ class Advert
     {
         return $this->id;
     }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     * @return Advert
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-
-
 
     /**
      * Set logo
@@ -225,30 +187,6 @@ class Advert
     {
         return $this->comment;
     }
-
-    /**
-     * Set advertiser
-     *
-     * @param string $advertiser
-     * @return Advert
-     */
-    public function setAdvertiser($advertiser)
-    {
-        $this->advertiser = $advertiser;
-
-        return $this;
-    }
-
-    /**
-     * Get advertiser
-     *
-     * @return string 
-     */
-    public function getAdvertiser()
-    {
-        return $this->advertiser;
-    }
-
     /**
      * Set displayLocation
      *
@@ -261,7 +199,6 @@ class Advert
 
         return $this;
     }
-
     /**
      * Get displayLocation
      *
@@ -273,94 +210,71 @@ class Advert
     }
 
     /**
-     * Set enabled
+     * Set name
      *
-     * @param integer $enabled
-     * @return Advert
+     * @param string $name
+     * @return Badge
      */
-    public function setEnabled($enabled)
+    public function setName($name)
     {
-        $this->enabled = $enabled;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get enabled
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     * @return Badge
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string 
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set enable
+     *
+     * @param integer $enable
+     * @return Badge
+     */
+    public function setEnable($enable)
+    {
+        $this->enable = $enable;
+
+        return $this;
+    }
+
+    /**
+     * Get enable
      *
      * @return integer 
      */
-    public function getEnabled()
+    public function getEnable()
     {
-        return $this->enabled;
-    }
-
-    /**
-     * Set expired
-     *
-     * @param integer $expired
-     * @return Advert
-     */
-    public function setExpired($expired)
-    {
-        $this->expired = $expired;
-
-        return $this;
-    }
-
-    /**
-     * Get expired
-     *
-     * @return integer 
-     */
-    public function getExpired()
-    {
-        return $this->expired;
-    }
-
-    /**
-     * Set expiresAt
-     *
-     * @param \DateTime $expiresAt
-     * @return Advert
-     */
-    public function setExpiresAt($expiresAt)
-    {
-        $this->expiresAt = $expiresAt;
-
-        return $this;
-    }
-
-    /**
-     * Get expiresAt
-     *
-     * @return \DateTime 
-     */
-    public function getExpiresAt()
-    {
-        return $this->expiresAt;
-    }
-
-    /**
-     * Set suscribeDate
-     *
-     * @param \DateTime $suscribeDate
-     * @return Advert
-     */
-    public function setSuscribeDate($suscribeDate)
-    {
-        $this->suscribeDate = $suscribeDate;
-
-        return $this;
-    }
-
-    /**
-     * Get suscribeDate
-     *
-     * @return \DateTime 
-     */
-    public function getSuscribeDate()
-    {
-        return $this->suscribeDate;
+        return $this->enable;
     }
 }

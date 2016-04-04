@@ -13,18 +13,15 @@
     </ol>
 
     <div class="col-sm-6  panel panel-danger" >
-        <div id="selectedProduct" class="owl-carousel">
+        <div id="selectedProducts" class="owl-carousel">
 
-            {% if selectedProduct %}
-
-                        <img src="{{ vich_uploader_asset(selectedProduct, 'frontImageFile') }}" alt="" style="width:auto;  ">
-
-                        <img src="{{ vich_uploader_asset(selectedProduct, 'rearImageFile') }}" alt="" style="width:auto; ">
-
+            {% if selectedProduct  is defined  %}
+                <div class="thumbnail">
+                            <img src="{{ vich_uploader_asset(selectedProduct, 'frontImageFile') }}" alt="" style="width:auto;  ">
+                    {#<img src="{{ vich_uploader_asset(selectedProduct, 'rearImageFile') }}" alt="" style="width:auto;  ">#}
+                </div>
             {%  endif %}
-
         </div>
-
     </div>
     
     <div class="col-sm-6" >

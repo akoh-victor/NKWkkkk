@@ -3,7 +3,6 @@
 namespace AppBundle\Controller\admin;
 
 use AppBundle\Entity\Advert;
-
 use AppBundle\Form\Type\AdvertType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,13 +12,13 @@ use Symfony\Component\HttpFoundation\Request;
 class AdvertController extends Controller
 {
     /**
-     * @Route("/admin/advert", name="")
+     * @Route("/admin/advert/create", name="create advert")
      */
-    public function indexAction(Request $request)
+    public function createAdvertAction(Request $request)
     {
         $Advert = $this->getDoctrine()
             ->getRepository('AppBundle:Advert');
-        $rescentAdvert = $Advert->findAllRescentPublish('20');
+        $rescentAdvert = $Advert->findAll();
 
         if (!$Advert)
         { throw
@@ -27,24 +26,28 @@ class AdvertController extends Controller
         }
 
         $advert = new Advert();
-        $form = $this->createForm(new AdvertType(), $advert);
+        $form = $this->createForm(new AdvertType(), $advert)
+            ->add('save', 'submit', array(
+                'label' => 'Create',
+                'attr'=>array('class'=>'btn btn-md btn-info')
+            ));
         $form->handleRequest($request);
 
         if ($form->isValid()) {
 
-            $advert->setPublishDate(new \DateTime());
-            $advert->setExpire(0);
-            $advert->setView(1);
+            $advert->setSuscribeDate(new \DateTime());
+            $advert->setExpired(0);
+            $advert->setEnabled(0);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($advert);
             $em->flush();
-            return $this->redirect($this->generateUrl('create news'));
+            return $this->redirect($this->generateUrl('create advert'));
         }
-        return $this->render('admin/news.html.twig', array(
+        return $this->render('admin/advert.html.twig', array(
             'form' => $form ->createView(),
-            'rescentAdvert'=>$rescentAdvert,
-            'news'=>$advert,
+            'advert'=>$rescentAdvert,
+
         ));
     }
 
@@ -72,15 +75,12 @@ class AdvertController extends Controller
             $form->bind($request);
 
             if ($form->isValid()) {
-
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($Advert);
                 $em->flush();
-
                 return $this->redirect($this->generateUrl('create news'));
             }
         }
-
         return $this->render('admin/news.html.twig', array( 'form' => $form ->createView(), 'rescentAdvert'=>$rescentAdvert, ));
     }
 

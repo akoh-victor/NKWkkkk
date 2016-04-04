@@ -68,6 +68,7 @@ class DefaultController extends  Controller
     public function indexAction(Request $request)
     {
         $limit = 8;
+        $Badge = $this->getDoctrine()->getRepository('AppBundle:Badge');
         $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
         $Department = $this->getDoctrine()->getRepository('AppBundle:Department');
         //$mostRead=$Product->mostView('20');
@@ -76,13 +77,16 @@ class DefaultController extends  Controller
         $featuredProducts = $Product->findAllRecentProducts('15');
         $sponsoredProducts = $Product->findAllRecentProducts('15');
         $departments=$Department->findDepartment($limit);
+        $badges=$Badge->findAll();
+
 
 
         return $this->render('default/index.html.twig', array(
             'newArrivals' => $newArrivals,
             'featuredProducts' => $featuredProducts,
             'sponsoredProducts' => $sponsoredProducts,
-            'departments'=>$departments
+            'departments'=>$departments,
+            'badges'=>$badges
 
         ));
     }
@@ -93,8 +97,7 @@ class DefaultController extends  Controller
     public function adminIndexAction(Request $request)
     {
 
-        $Department = $this->getDoctrine()
-            ->getRepository('AppBundle:Department');
+        $Department = $this->getDoctrine()->getRepository('AppBundle:Department');
         $departments = $Department->findAllOrderedById();
 
 
@@ -112,12 +115,12 @@ class DefaultController extends  Controller
      */
     public function departmentAction(Request $request,$id)
     {
+
         $Department = $this->getDoctrine()->getRepository('AppBundle:Department');
         $Product = $this->getDoctrine()->getRepository('AppBundle:Product');
         $department = $Department->find($id);
         $departments = $Department->findDepartment('8');;
         $customersChoiceProducts = $Product->mostView('20');
-
 
         $query =  $Product->findDepartmentProduct($department);
 
@@ -133,6 +136,7 @@ class DefaultController extends  Controller
             'department'=>$department,
             'departments'=>$departments,
             'customersChoiceProducts'=>$customersChoiceProducts,
+
         ));
     }
 

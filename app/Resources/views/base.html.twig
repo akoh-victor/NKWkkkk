@@ -45,6 +45,7 @@
                 <li ><a href="/department/{{ department.id }}">{{ department.name | title }}<span class="caret"></span></a>
                 <div>
                     <div class="col-sm-4">
+                        <h5><strong>Additional Categories</strong></h5>
                     <ul>
                         {% for category in department.category %}
                             <li><a href="/department/category/{{ category.id }}">{{ category.name |title }}</a></li>
@@ -52,8 +53,8 @@
                     </ul>
                     </div>
 
-                    <div style="background: url('{{ vich_uploader_asset(department, 'imageFile') }}') no-repeat;
-                            background-size: contain;display:block
+                    <div style="background: url('{{ vich_uploader_asset(department, 'imageFile') }}') no-repeat
+                            ;background-origin: padding-box;
                            "class="col-sm-8">
 
                         <a href="/department/{{ department.id }}">
