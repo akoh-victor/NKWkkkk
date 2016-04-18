@@ -200,30 +200,23 @@
 
         <!-- Page Content -->
         <div  id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
                    {% block page %}
 
                            {% block bodyTitle %}  <h3 class="h1">Dashboard </h3>   {% endblock %}
 
-                        <div class="row">
-                                <div class="col-sm-7 col-md-8 col-lg-8">
+
+                                <div class="col-sm-7 panel panel-red">
                                    {% block content %}{% endblock %}
                                 </div>
 
-                                <div class="col-sm-5 col-md-3 col-lg-4">
-                                    {% block sideBarRight %}{% endblock %}
-                               </div>
-                        </div>
+
                    {% endblock %}
-                    </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
         </div>
-        {#  /#page-wrapper #}
+
+
+
     </div>
-    <!-- /#wrapper -->
+
 
     <!-- scrips  -->
     {% block javascripts %}

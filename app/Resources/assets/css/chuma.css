@@ -13,8 +13,59 @@ body {
     font-weight: 300;
     font-size: 15px;
 }
-nav {
 
+.user-nav {
+    color: black;
+    min-width: 100%;
+    max-height: 2em;
+    min-height: 2em;
+    margin: 0 0 0.3em 0;
+    background-color: white;
+    padding: 0 5em 0 5em;
+    box-shadow: 0 6px 6px -1px rgba(0, 0, 0, 0.055);
+}
+.user-nav > ul {
+    display: inline-block;
+    margin: 0;
+    padding-top: 0.3em;
+}
+
+.user-nav > ul > li {
+    display: inline-block;
+    list-style-type: none;
+    padding: 0 2em 0 0;
+
+}
+.user-nav > ul > li > a{
+    color: black;
+}
+.top-header{
+    position: relative;
+    max-width: 80%;
+    margin: 0;
+    padding: 0.1em 0 10px;
+    white-space: nowrap;
+}
+.ads{
+    width: 100%;
+    margin-left: 0;
+    height: 19em;
+    border: 1px solid #dedede;
+}
+.profile{
+    width: 100%;
+    margin-left: 0;
+    min-height: 30em;
+
+    border: 1px solid #dedede;
+}
+.ads-small{
+    width: 100%;
+    margin-top: 1em;
+    height: 6em;
+    border: 1px solid #dedede;
+}
+nav {
     border: 1px solid #dedede;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
     color: #888;
@@ -22,7 +73,7 @@ nav {
     margin: 30px 2% 30px 2%;
     overflow: hidden;
     width: 96%;
-    padding:  0% 2%;
+    padding:  0 2%;
 }
 nav ul {
     margin: 0;
@@ -300,4 +351,3 @@ span img{
 .h2, h2 {
     font-size: 25px;
 }
-

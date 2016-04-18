@@ -1,8 +1,17 @@
 
-nkw
-===
+Nimi kiddies is a baby shop in nigeria.===
 
-A Symfony project created on January 12, 2016, 12:24 pm.
-=======
-# NKW
+ NKW is the e-commerce app for nimi Kiddies based on symfony framework.
+ This app has three section 
+  1 Admin (For the admin functions)
+  2 Public ()
+  3 Customer (manages the customers account(delete,reset,edit,request 
+  for a new password) 
+  and 
+  activities(order and cart details ))
+
+
+
+
+
 

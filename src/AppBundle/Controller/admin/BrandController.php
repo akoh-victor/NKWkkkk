@@ -41,7 +41,7 @@ class BrandController extends Controller
 
         return $this->render('admin/brand.html.twig', array(
             'form' => $form ->createView(),
-            'brand'=>$brandim
+            'brands'=>$brandim
 
         ));
     }

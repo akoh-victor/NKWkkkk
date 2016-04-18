@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use Sylius\Bundle\CartBundle\Form\Type\CartItemType;
 
+use AppBundle\Entity\Message;
+use AppBundle\Form\Type\MessageType;
 use AppBundle\Entity\OrderItem;
 use AppBundle\Entity\Department;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -212,4 +214,30 @@ class DefaultController extends  Controller
 
     }
 
+
+    /**
+     * @Route("/contact", name = "contactUs")
+     */
+    public function contactAction(Request $request)
+    {
+
+        $message = new Message();
+        $form = $this->createForm(new MessageType(), $message);
+        $form->handleRequest($request);
+
+        if ($form->isValid())
+        {
+            $message->setPosted(new \DateTime());
+            $message->setRead(0);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($message);
+            $em->flush();
+            $this->get('session')->getFlashBag()->add('notice','Your message was successfully sent !!! We will get back to you soon.');
+            return $this->redirect($this->generateUrl('contact'));
+        }
+
+
+        return $this->render('default/contact.html.twig', array( 'form' => $form ->createView(),));
+
+    }
 }

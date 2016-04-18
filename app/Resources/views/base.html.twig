@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
  <head>
-        <meta charset="UTF-8" />
+     <link rel="stylesheet" type="text/css" href="app/Resources/assets/css/chuma.css"/>
+     <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -36,42 +37,97 @@
  <body>
   <header>
   </header>
+  <div class="user-nav">
+      {% set cart = sylius_cart_get() %}
+          <ul>
+              <li>Hi all!</li>
+              <li> <a href= "{{ path('contactUs') }}">Contact & Support</a></li>
+          </ul>
+
+
+          <ul class="pull-right">
+              <li>
+                  <a href= "{{ path('showProfileAccount') }}">My Account</a>
+              </li>
+              <li>
+                  <a href= "{{ path('sylius_cart_summary') }}">Cart ({{ cart.totalItems }})</a>
+              </li>
+              <li>
+                  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                      <a href= "{{ path('fos_user_security_logout') }}">Logout</a>
+                  {% else %}
+                      <a href= "{{ path('fos_user_security_login') }}">Login</a>
+                  {% endif %}
+              </li>
+          </ul>
+  </div>
 <div class="container-fluid">
     {% block header %}
-    {% if departments is defined %}
+
+        <div class="top-header">
+            <div class="col-md-2" style="left: 10px;width: 300px;  float: left;">
+                <a href="index.php" >
+                    <img src="{{ asset('logo.png') }}" alt="nice image"
+                         style="width: 200px"/>
+                </a>
+            </div>
+
+
+            <div class="input-group">
+                <span style="padding: 0; margin: 0" class="input-group-addon">
+                            <button  class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                                     aria-expanded="false">
+                               Shop by <span class="caret"></span> <br /> category
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                            </ul>
+                </span>
+                            <input type="text" class="form-control" placeholder="Search for products">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Search!</button>
+                                </span>
+            </div>
+        </div>
+
         <nav>
-            <ul>
-                {% for department in departments %}
-                <li ><a href="/department/{{ department.id }}">{{ department.name | title }}<span class="caret"></span></a>
-                <div>
-                    <div class="col-sm-4">
-                        <h5><strong>Additional Categories</strong></h5>
-                    <ul>
-                        {% for category in department.category %}
-                            <li><a href="/department/category/{{ category.id }}">{{ category.name |title }}</a></li>
-                        {% endfor %}
-                    </ul>
+            {% if departments is defined %}
+                <ul>
+                    {% for department in departments %}
+                    <li ><a href="/department/{{ department.id }}">{{ department.name | title }}<span class="caret"></span></a>
+                    <div>
+                        <div class="col-sm-4">
+                            <h5><strong>Additional Categories</strong></h5>
+                        <ul>
+                            {% for category in department.category %}
+                                <li><a href="/department/category/{{ category.id }}">{{ category.name |title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        </div>
+
+                        <div style="background: url('{{ vich_uploader_asset(department, 'imageFile') }}') no-repeat
+                                ;background-origin: padding-box;
+                               "class="col-sm-8">
+
+                            <a href="/department/{{ department.id }}">
+                                <div class="navLogoBadge">
+                                    <h1 class="navLogoText">Explore all  {{ department.name }} </h1>
+                                </div>
+
+                            </a>
+                        </div>
+
                     </div>
 
-                    <div style="background: url('{{ vich_uploader_asset(department, 'imageFile') }}') no-repeat
-                            ;background-origin: padding-box;
-                           "class="col-sm-8">
-
-                        <a href="/department/{{ department.id }}">
-                            <div class="navLogoBadge">
-                                <h1 class="navLogoText">Explore all  {{ department.name }} </h1>
-                            </div>
-
-                        </a>
-                    </div>
-
-                </div>
-
-                </li>
-                {% endfor %}
-            </ul>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </nav>
-    {% endif %}
     {% endblock %}
     <div class="clear-fix"></div>
 </div>
@@ -199,7 +255,7 @@
                         pagination: false,
                         thumbnails: false,
                         transPeriod	: 10,
-                        portrait:true,
+                        portrait:true
 
                     });
 

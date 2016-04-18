@@ -1,18 +1,15 @@
-{% extends 'base.html.twig' %}
-
-
-{% block content %}
 
 
 
 
 
-    <div>
+    <div class="profile">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
                 <a href="/profile/account">Account</a></li>
             <li role="presentation"><a href="/profile/activities">Activities</a></li>
+
         </ul>
 
         <!-- Tab panes -->
@@ -23,7 +20,7 @@
                            <div class="panel panel-heading">
                                Personal Information
                                    <a href="{{ path ("fos_user_profile_edit") }}" style="color: #222222"
-                                      class="btn-default btn-circle btn-outline  pull-right">
+                                      class="btn-default btn-circle btn-outline pull-right">
                                           <strong>Update Account</strong></a>
 
                            </div>
@@ -133,6 +130,4 @@
             </div>
         </div>
     </div>
-
-{% endblock %}
 
