@@ -205,16 +205,18 @@
                            {% block bodyTitle %}  <h3 class="h1">Dashboard </h3>   {% endblock %}
 
 
-                                <div class="col-sm-7 panel panel-red">
-                                   {% block content %}{% endblock %}
-                                </div>
+                                    <div class="col-sm-7 panel panel-red">
+                                       {% block content %}{% endblock %}
+                                    </div>
+                                    <div class="col-sm-5 panel panel-red">
+                                       {% block sideBarRight %}{% endblock %}
+                                    </div>
+
 
 
                    {% endblock %}
-        </div>
 
-
-
+    </div>
     </div>
 
 
