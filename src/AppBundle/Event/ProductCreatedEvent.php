@@ -7,6 +7,7 @@ use Symfony\Component\EventDispatcher\Event;
 /**
  * The product created event is dispatched each time an product is created
  * in the system.
+ * for the the listners to carry out post product creation actions
  */
 class ProductCreatedEvent extends Event
 {

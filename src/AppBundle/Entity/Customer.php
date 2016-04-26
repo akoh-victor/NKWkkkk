@@ -59,13 +59,17 @@ class Customer extends User
     protected $city;
     /**
      * @ORM\Column(type="smallint",nullable=true)
-     *
      */
     protected $receivePromo;
     /**
      * @ORM\Column(type="integer",nullable=true, options={"unsigned":true, "default":0})
      */
     protected $login_count;
+
+    /**
+     * @ORM\Column(type="smallint",nullable=true, options={"unsigned":true, "default":0})
+     */
+    protected $updated;
 
     /**
      * Set firstName
@@ -295,5 +299,28 @@ class Customer extends User
     public function getLoginCount()
     {
         return $this->login_count;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param integer $updated
+     * @return Customer
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return integer 
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
     }
 }

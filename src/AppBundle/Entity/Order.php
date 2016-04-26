@@ -14,7 +14,7 @@ class Order extends SyliusCart
     /**
      * @ORM\Column(type="string",nullable = true)
      */
-    private $email;
+    private $user;
 
 
     //relationship
@@ -29,28 +29,35 @@ class Order extends SyliusCart
     protected $adjustments;
 
 
-
-
-
-
-
-
-
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
 
     /**
-    * @return string
-    */
-    public function getEmail()
+     * Set user
+     *
+     * @param string $user
+     * @return Order
+     */
+    public function setUser($user)
     {
-    return $this->email;
+        $this->user = $user;
+
+        return $this;
     }
 
     /**
-    * @param string $email
-    */
-    public function setEmail($email)
+     * Get user
+     *
+     * @return string 
+     */
+    public function getUser()
     {
-    $this->email = $email;
+        return $this->user;
     }
 }

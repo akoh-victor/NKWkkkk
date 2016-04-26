@@ -25,7 +25,7 @@ class OrderItem extends SyliusCartItem
      //relationship
     /**
      * @ORM\ManyToOne(targetEntity="Product", inversedBy="orderitem")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id", nullable = false)
+     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      */
     protected $product;
 
