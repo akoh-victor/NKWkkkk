@@ -40,7 +40,12 @@
   <div class="user-nav">
       {% set cart = sylius_cart_get() %}
           <ul>
-              <li>Hi all!</li>
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                  <li>Hi {{ app.user.username }}!</li>
+              {% else %}
+                  <li>Hi all!</li>
+              {% endif %}
+
               <li> <a href= "{{ path('contactUs') }}">Contact & Support</a></li>
           </ul>
 
@@ -66,8 +71,8 @@
 
         <div class="top-header">
             <div class="col-md-2" style="left: 10px;width: 300px;  float: left;">
-                <a href="index.php" >
-                    <img src="{{ asset('logo.png') }}" alt="nice image"
+                <a href={{ path('home') }} >
+                        <img src="{{ asset('logo.png') }}" alt="Nimi Kiddies"
                          style="width: 200px"/>
                 </a>
             </div>
@@ -157,9 +162,61 @@
       {% endblock %}
       </div>
 
-  <footer>
- {#footer content goes here #}
-  </footer>
+
+      <footer>
+          <div class="row">
+                  <div class="col-xs-3">
+                      <h1><small>About Us</small> </h1>
+                      <h1> </h1>
+                      <p>
+                          <a href={{ path('home')}}>Home</a> | <a href={{ path('contactUs')}}>Contact Us</a> |
+                          <br />
+                          <a href="http://www.facebook.com/nimikiddies"><img src="{{ asset('images/rss_4.gif') }}"
+                                                                             alt="facebook"
+                                                                             width="16" height="16" border="0"
+                                                                             class="rss" /></a> <a href="#"><img src="{{ asset('images/rss_2.gif') }}" alt="linkedin"
+                                                                                                                 width="16" height="16" border="0" class="rss" /></a>
+                          <a href="http://www.twitter.com/nimikiddies"><img src="{{ asset('images/rss_3.gif') }}" alt="twiter"
+                                                                            width="16" height="16" border="0" class="rss" /></a>
+                      </p>
+
+                  </div>
+
+              <div class="col-xs-3">
+                  <h1><small>Services</small></h1>
+                  <p>detaild list of services we render</p>
+              </div>
+
+              <div class="col-xs-3">
+                      <h1><small>Contact Us</small></h1>
+                      <p>Office : +234-8114551455</p>
+                      <p>info@nimikiddies.com</p>
+                      <p>jobs@nimikiddies.com</p>
+                      <p>Manned 24hrs a day</p>
+                  </div>
+
+
+                  <div class="col-xs-3">
+                      <h1><small>Office Address</small></h1>
+                      <p>  5, Oja Iya Street, off Taiwo Road <br />Opposite Ostrich Bakery ,
+                          <br /> Ilorin,Kwara State
+                      </p>
+                  </div>
+
+          </div>
+      <div>
+          <hr />
+          <p>
+              &copy; 2016 Nimi Kiddies & Parties. All Rights Reserved<br />
+          </p>
+      </div>
+      </footer>
+
+
+
+
+
+
         {% block javascripts %}
 
         {% javascripts filter="?jsqueeze" output="js/app.js"
@@ -190,6 +247,17 @@
                         scrollPerPage:true,
                         autoPlay: 30000,
                         items : 4,
+                        itemsDesktop : [1199,3],
+                        itemsDesktopSmall : [979,3],
+
+                        navigation : false
+                    });
+                    $("#brands").owlCarousel({
+                        transitionStyle :true,
+                        stopOnHover:true,
+                        scrollPerPage:true,
+                        autoPlay: 30000,
+                        items : 10,
                         itemsDesktop : [1199,3],
                         itemsDesktopSmall : [979,3],
 

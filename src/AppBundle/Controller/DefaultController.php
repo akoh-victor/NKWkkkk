@@ -44,20 +44,16 @@ class DefaultController extends  Controller
             $em->flush();
 
         }
-       /* try { $item = $this->getResolver()->resolve($emptyItem, $request); }
-        catch (ItemResolvingException $exception)
-        { Write flash message  $this->dispatchEvent(SyliusCartEvents::ITEM_ADD_ERROR, new FlashEvent
-        ($exception->getMessage()));
-         return $this->redirectToCartSummary(); }*/
 
-
+        $dataclas ='AppBundle\Entity\OrderItem';
         return $this->render('default/brows.html.twig', array(
 
             'selectedProduct' =>  $product,
             'customersChoiceProducts' => $customersChoiceProducts,
             'sponsoredProducts' => $sponsoredProducts,
             'similarProducts'=>$similarProducts,
-            //'form' =>$form->createView(),
+            'dataclase'=>$dataclas
+
 
 
         ));
@@ -228,12 +224,12 @@ class DefaultController extends  Controller
         if ($form->isValid())
         {
             $message->setPosted(new \DateTime());
-            $message->setRead(0);
+            $message->setView(0);
             $em = $this->getDoctrine()->getManager();
             $em->persist($message);
             $em->flush();
             $this->get('session')->getFlashBag()->add('notice','Your message was successfully sent !!! We will get back to you soon.');
-            return $this->redirect($this->generateUrl('contact'));
+            return $this->redirect($this->generateUrl('contactUs'));
         }
 
 

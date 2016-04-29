@@ -31,7 +31,15 @@
                <div style = "background-color:rgba(230,225,225,0.2)" >
                    <hr />
 
-                  <a href="{{ path('sylius_cart_item_add', {'productId': selectedProduct.id}) }}">Add product to cart</a>
+
+                   {% set form = sylius_cart_form({'data_class': dataclase}) %} {# You can pass options as an argument. #}
+
+                   <form action="{{ path('sylius_cart_item_add', {'productId': selectedProduct.id}) }}" method="post">
+                       {{ form_row(form.quantity)}}
+                       {{ form_widget(form._token) }}
+                       <input type="submit" value="Add to cart">
+                   </form>
+
                        {# <table class="table">
                                <tr>
 
