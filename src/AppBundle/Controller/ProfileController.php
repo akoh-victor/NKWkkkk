@@ -2,8 +2,6 @@
 
 namespace AppBundle\Controller;
 
-
-
 use FOS\UserBundle\Controller\ProfileController as baseProfiler;
 use FOS\UserBundle\FOSUserEvents;
 use FOS\UserBundle\Event\FormEvent;
@@ -14,9 +12,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-
-
-
 class ProfileController extends baseProfiler
 {
     /**
@@ -67,11 +62,15 @@ class ProfileController extends baseProfiler
         ));
     }
     /**
-     * @Route("/profile/activities/{link}", defaults={"link" = "cart"}, name="showProfileActivities")
+     * @Route("/profile/activities/{link}", defaults={"link" = "order"}, name="showProfileActivities")
      */
     public function showActivityAction(Request $request,$link)
     {
-        $user = $this->getUser();
+         $user = $this->getUser();
+
+        $cart=$this->container->get('sylius.cart_provider')->getCart();
+        $order =$this->get('sylius.repository.order')->find(['user' => $user]);
+
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
@@ -80,8 +79,9 @@ class ProfileController extends baseProfiler
         $url="1";
         return $this->render('default/profile.html.twig', array(
             'user' => $user,
-            'activities'=>$url,
+            'activities' =>$url,
             'link' => $link,
+            'orders' => $order,
         ));
     }
 }

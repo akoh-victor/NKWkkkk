@@ -152,6 +152,11 @@ class Product
      */
     protected $gender;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Orderitem", inversedBy="product")
+     * @ORM\JoinColumn(name="orderitem_id", referencedColumnName="id")
+     */
+    protected $orderitem;
 
     /**
      * Get id
@@ -773,5 +778,28 @@ class Product
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set orderitem
+     *
+     * @param \AppBundle\Entity\Orderitem $orderitem
+     * @return Product
+     */
+    public function setOrderitem(\AppBundle\Entity\Orderitem $orderitem = null)
+    {
+        $this->orderitem = $orderitem;
+
+        return $this;
+    }
+
+    /**
+     * Get orderitem
+     *
+     * @return \AppBundle\Entity\Orderitem 
+     */
+    public function getOrderitem()
+    {
+        return $this->orderitem;
     }
 }

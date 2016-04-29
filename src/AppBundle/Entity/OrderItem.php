@@ -17,34 +17,24 @@ class OrderItem extends SyliusCartItem
     /**
      * @var Product
      */
-    private $prod;
+    private $product;
 
 
-
-
-     //relationship
-    /**
-     * @ORM\ManyToOne(targetEntity="Product", inversedBy="orderitem")
-     * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
-     */
-    protected $product;
 
     /**
      * @return Product
      */
     public function getProduct()
     {
-        return $this->prod;
+        return $this->product;
     }
 
     /**
-     * @param Product $prod
+     * @param Product $product
      */
-    public function setProduct(Product $prod)
+    public function setProduct(Product $product)
     {
-        $this->product = $prod;
+        $this->product = $product;
     }
-
-
 
 }

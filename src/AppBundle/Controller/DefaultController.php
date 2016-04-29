@@ -224,12 +224,12 @@ class DefaultController extends  Controller
         if ($form->isValid())
         {
             $message->setPosted(new \DateTime());
-            $message->setRead(0);
+            $message->setView(0);
             $em = $this->getDoctrine()->getManager();
             $em->persist($message);
             $em->flush();
             $this->get('session')->getFlashBag()->add('notice','Your message was successfully sent !!! We will get back to you soon.');
-            return $this->redirect($this->generateUrl('contact'));
+            return $this->redirect($this->generateUrl('contactUs'));
         }
 
 

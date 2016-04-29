@@ -22,8 +22,11 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class FinalizeCheckoutStep extends Controller
 {
     const STATE_BEGIN    = 'begin';
-    const STATE_COMPLETE = 'complete';
+    const STATE_PENDING  = 'pending';
     const STATE_READY    = 'ready';
+    const STATE_COMPLETE = 'complete';
+
+
 
     /**
      *  @Route("/checkout/finalize",name="checkout_summary")
@@ -53,21 +56,19 @@ class FinalizeCheckoutStep extends Controller
 
         $user =$this->getUser();
         $order->setUser($user);
-        $order->setState(self::STATE_READY);
+        $order->setState(self::STATE_PENDING);
 
         $this->get('event_dispatcher')->dispatch('app.product_ordered', new GenericEvent($order));
           // then save order
         $this->save($order);
 
-        $this->addFlash('order.state', self::STATE_READY);
+        $this->addFlash('order.state', self::STATE_PENDING);
         $this->getProvider()->abandonCart();
 
 
+        return $this->redirectToRoute('showProfileActivities');
 
 
-        return $this->render('checkout/step/addressing.html.twig', [
-            'order' => $order,
-        ]);
     }
 
 

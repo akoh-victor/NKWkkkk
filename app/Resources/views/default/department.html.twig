@@ -23,20 +23,30 @@
             {% endfor %}
         </tr>
         <tr>
-           <th>
-               <strong>Brand :</strong>
-           </th>
-           {% for category in department.category %}
-               {% for group in category.group %}
-                   {% for brand in group.brand %}
-                           <td>
-                               <a href="/department/category/{{ brand.id }}">   {{ brand.name |title }}</a>
-                           </td>
-                   {% endfor %}
-               {% endfor %}
-           {% endfor %}
-       </tr>
+
+        </tr>
        </table>
+         <div class="row">
+             <div class="panel header"><strong>Featured Brands</strong></div>
+                    <div id="brands" class="owl-carousel">
+
+                        {% for category in department.category %}
+                            {% for group in category.group %}
+                                {% for brand in group.brand %}
+                                    <div style="width:auto;  height:55px" class="thumbnail carouselProducts">
+                                        <a href="/brows/{{ brand.id }}">
+                                            <img src="{{ vich_uploader_asset(brand, 'imageFile') }}" alt="{{ brand
+                                            .name |title }}" style="width:auto;  height:50px">
+                                        </a>
+                                    </div>
+                                {%  endfor %}
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+         </div>
+
+
+
      </div>
 
 
